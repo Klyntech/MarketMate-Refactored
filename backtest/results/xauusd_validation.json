@@ -1,0 +1,22 @@
+{
+  "instrument": "XAUUSD",
+  "h4": 3098,
+  "sigs": 9,
+  "trades": 9,
+  "wr": 0.6667,
+  "pf": 3.77,
+  "sharpe": 23.67,
+  "mdd": 1.03,
+  "exp": 0.6333,
+  "total": 5.7,
+  "tp1": 4,
+  "tp2": 2,
+  "sl": 2,
+  "mc_profit": 1.0,
+  "mc_ruin": 0.0,
+  "mc_pnl_ci": [
+    5.7,
+    5.7
+  ],
+  "mc_dd99": 2.06
+}

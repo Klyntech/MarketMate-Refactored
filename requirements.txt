@@ -1,0 +1,19 @@
+# Signal Engine Core
+pandas>=2.2.0
+numpy>=1.26.0
+aiohttp>=3.9.0
+structlog>=24.2.0
+tenacity>=8.3.0
+python-dotenv>=1.0.0
+yfinance>=0.2.40
+
+# Telegram Delivery
+python-telegram-bot>=21.3
+
+# Chart Rendering
+matplotlib>=3.9.0
+Pillow>=10.3.0
+
+# Optional: MongoDB Persistence
+motor>=3.4.0
+pymongo>=4.7.0

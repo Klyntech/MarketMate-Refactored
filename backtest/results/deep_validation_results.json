@@ -1,0 +1,700 @@
+{
+  "timestamp": "2026-06-07T09:39:32.768928",
+  "mm002_validation": {
+    "portfolio_stats": {
+      "total_trades": 3587,
+      "wins": 2016,
+      "losses": 1571,
+      "pf": 0.6459,
+      "wr": 0.562,
+      "avg_r": -0.187,
+      "mdd_r": 696.1,
+      "sharpe": -1.0941,
+      "gross_profit": 1223.39,
+      "gross_loss": 1894.02
+    },
+    "year_by_year": {
+      "2014": {
+        "total_trades": 182,
+        "wins": 120,
+        "losses": 62,
+        "pf": 0.9626,
+        "wr": 0.6593,
+        "avg_r": -0.0149,
+        "mdd_r": 23.03,
+        "sharpe": -0.1075,
+        "gross_profit": 69.59,
+        "gross_loss": 72.3
+      },
+      "2015": {
+        "total_trades": 237,
+        "wins": 116,
+        "losses": 121,
+        "pf": 0.2824,
+        "wr": 0.4895,
+        "avg_r": -0.8732,
+        "mdd_r": 213.0,
+        "sharpe": -2.3832,
+        "gross_profit": 81.45,
+        "gross_loss": 288.39
+      },
+      "2016": {
+        "total_trades": 239,
+        "wins": 132,
+        "losses": 107,
+        "pf": 0.3011,
+        "wr": 0.5523,
+        "avg_r": -0.793,
+        "mdd_r": 216.35,
+        "sharpe": -2.4077,
+        "gross_profit": 81.65,
+        "gross_loss": 271.18
+      },
+      "2017": {
+        "total_trades": 253,
+        "wins": 151,
+        "losses": 102,
+        "pf": 0.8556,
+        "wr": 0.5968,
+        "avg_r": -0.062,
+        "mdd_r": 38.36,
+        "sharpe": -0.4958,
+        "gross_profit": 93.0,
+        "gross_loss": 108.69
+      },
+      "2018": {
+        "total_trades": 308,
+        "wins": 170,
+        "losses": 138,
+        "pf": 0.737,
+        "wr": 0.5519,
+        "avg_r": -0.1142,
+        "mdd_r": 39.83,
+        "sharpe": -1.0173,
+        "gross_profit": 98.61,
+        "gross_loss": 133.8
+      },
+      "2019": {
+        "total_trades": 321,
+        "wins": 192,
+        "losses": 129,
+        "pf": 0.8712,
+        "wr": 0.5981,
+        "avg_r": -0.0504,
+        "mdd_r": 32.21,
+        "sharpe": -0.4514,
+        "gross_profit": 109.44,
+        "gross_loss": 125.62
+      },
+      "2020": {
+        "total_trades": 352,
+        "wins": 174,
+        "losses": 178,
+        "pf": 0.6263,
+        "wr": 0.4943,
+        "avg_r": -0.1887,
+        "mdd_r": 70.59,
+        "sharpe": -1.582,
+        "gross_profit": 111.3,
+        "gross_loss": 177.72
+      },
+      "2021": {
+        "total_trades": 308,
+        "wins": 159,
+        "losses": 149,
+        "pf": 0.6393,
+        "wr": 0.5162,
+        "avg_r": -0.1703,
+        "mdd_r": 53.23,
+        "sharpe": -1.5101,
+        "gross_profit": 92.98,
+        "gross_loss": 145.44
+      },
+      "2022": {
+        "total_trades": 294,
+        "wins": 163,
+        "losses": 131,
+        "pf": 0.7098,
+        "wr": 0.5544,
+        "avg_r": -0.1274,
+        "mdd_r": 40.86,
+        "sharpe": -1.1472,
+        "gross_profit": 91.63,
+        "gross_loss": 129.09
+      },
+      "2023": {
+        "total_trades": 288,
+        "wins": 156,
+        "losses": 132,
+        "pf": 0.7353,
+        "wr": 0.5417,
+        "avg_r": -0.1155,
+        "mdd_r": 38.04,
+        "sharpe": -1.0256,
+        "gross_profit": 92.4,
+        "gross_loss": 125.66
+      },
+      "2024": {
+        "total_trades": 294,
+        "wins": 172,
+        "losses": 122,
+        "pf": 0.8349,
+        "wr": 0.585,
+        "avg_r": -0.0677,
+        "mdd_r": 29.22,
+        "sharpe": -0.5937,
+        "gross_profit": 100.62,
+        "gross_loss": 120.51
+      },
+      "2025": {
+        "total_trades": 326,
+        "wins": 199,
+        "losses": 127,
+        "pf": 0.9939,
+        "wr": 0.6104,
+        "avg_r": -0.0023,
+        "mdd_r": 19.67,
+        "sharpe": -0.0202,
+        "gross_profit": 123.78,
+        "gross_loss": 124.55
+      },
+      "2026": {
+        "total_trades": 185,
+        "wins": 112,
+        "losses": 73,
+        "pf": 1.0826,
+        "wr": 0.6054,
+        "avg_r": 0.0317,
+        "mdd_r": 13.94,
+        "sharpe": 0.2674,
+        "gross_profit": 76.94,
+        "gross_loss": 71.07
+      }
+    },
+    "walk_forward": [
+      {
+        "fold": 1,
+        "train_period": "2014-02-10 \u2192 2016-10-24",
+        "test_period": "2016-10-31 \u2192 2018-12-17",
+        "train_trades": 597,
+        "test_trades": 597,
+        "train_pf": 0.3654,
+        "train_wr": 0.5611,
+        "test_pf": 0.7527,
+        "test_wr": 0.5796,
+        "test_avg_r": -0.1133,
+        "degradation": 2.06
+      },
+      {
+        "fold": 2,
+        "train_period": "2016-10-31 \u2192 2018-12-17",
+        "test_period": "2018-12-17 \u2192 2020-10-12",
+        "train_trades": 597,
+        "test_trades": 597,
+        "train_pf": 0.7527,
+        "train_wr": 0.5796,
+        "test_pf": 0.7339,
+        "test_wr": 0.541,
+        "test_avg_r": -0.121,
+        "degradation": 0.98
+      },
+      {
+        "fold": 3,
+        "train_period": "2018-12-17 \u2192 2020-10-12",
+        "test_period": "2020-10-12 \u2192 2022-08-15",
+        "train_trades": 597,
+        "test_trades": 597,
+        "train_pf": 0.7339,
+        "train_wr": 0.541,
+        "test_pf": 0.6268,
+        "test_wr": 0.5159,
+        "test_avg_r": -0.177,
+        "degradation": 0.85
+      },
+      {
+        "fold": 4,
+        "train_period": "2020-10-12 \u2192 2022-08-15",
+        "test_period": "2022-08-22 \u2192 2024-10-07",
+        "train_trades": 597,
+        "test_trades": 597,
+        "train_pf": 0.6268,
+        "train_wr": 0.5159,
+        "test_pf": 0.8358,
+        "test_wr": 0.5829,
+        "test_avg_r": -0.0661,
+        "degradation": 1.33
+      },
+      {
+        "fold": 5,
+        "train_period": "2022-08-22 \u2192 2024-10-07",
+        "test_period": "2024-10-14 \u2192 2026-05-18",
+        "train_trades": 597,
+        "test_trades": 597,
+        "train_pf": 0.8358,
+        "train_wr": 0.5829,
+        "test_pf": 0.9394,
+        "test_wr": 0.5913,
+        "test_avg_r": -0.0243,
+        "degradation": 1.12
+      }
+    ],
+    "monte_carlo": {
+      "n_simulations": 10000,
+      "prob_ruin": 0.0,
+      "mean_final_balance": 0.92,
+      "median_final_balance": 0.92,
+      "p5_final_balance": 0.92,
+      "p95_final_balance": 0.92,
+      "mean_max_dd_pct": 99.91,
+      "p95_max_dd_pct": 99.92,
+      "p99_max_dd_pct": 99.92,
+      "still_profitable_pct": 0.0
+    },
+    "bootstrap_monte_carlo": {
+      "n_simulations": 10000,
+      "pf_mean": 0.6464,
+      "pf_median": 0.6457,
+      "pf_p5": 0.6018,
+      "pf_p95": 0.6932,
+      "pf_p1": 0.5828,
+      "pf_p99": 0.715,
+      "pf_below_1_pct": 100.0,
+      "avg_r_mean": -0.1872,
+      "avg_r_p5": -0.2209,
+      "avg_r_p95": -0.1542,
+      "wr_mean": 0.5619,
+      "wr_p5": 0.5486
+    },
+    "trade_removal": {
+      "base": {
+        "total_trades": 3587,
+        "wins": 2016,
+        "losses": 1571,
+        "pf": 0.6459,
+        "wr": 0.562,
+        "avg_r": -0.187,
+        "mdd_r": 696.1,
+        "sharpe": -1.0941,
+        "gross_profit": 1223.39,
+        "gross_loss": 1894.02
+      },
+      "remove_10pct_winners": {
+        "mean_pf": 0.5816,
+        "median_pf": 0.5816,
+        "pf_below_1_pct": 100.0,
+        "p5_pf": 0.5778,
+        "n_winners_removed": 201
+      },
+      "remove_20pct_winners": {
+        "mean_pf": 0.5168,
+        "median_pf": 0.5169,
+        "pf_below_1_pct": 100.0,
+        "p5_pf": 0.5112,
+        "n_winners_removed": 403
+      },
+      "remove_30pct_winners": {
+        "mean_pf": 0.4525,
+        "median_pf": 0.4526,
+        "pf_below_1_pct": 100.0,
+        "p5_pf": 0.4465,
+        "n_winners_removed": 604
+      }
+    },
+    "gap_direction": {
+      "gap_up": {
+        "total_trades": 1903,
+        "wins": 1025,
+        "losses": 878,
+        "pf": 0.5736,
+        "wr": 0.5386,
+        "avg_r": -0.2378,
+        "mdd_r": 454.97,
+        "sharpe": -1.3674,
+        "gross_profit": 608.81,
+        "gross_loss": 1061.43
+      },
+      "gap_down": {
+        "total_trades": 1684,
+        "wins": 991,
+        "losses": 693,
+        "pf": 0.7382,
+        "wr": 0.5885,
+        "avg_r": -0.1295,
+        "mdd_r": 262.78,
+        "sharpe": -0.7752,
+        "gross_profit": 614.57,
+        "gross_loss": 832.58
+      },
+      "gap_up_count": 1903,
+      "gap_down_count": 1684
+    },
+    "instrument_breakdown": {
+      "EURUSD": {
+        "total_trades": 170,
+        "wins": 103,
+        "losses": 67,
+        "pf": 0.9907,
+        "wr": 0.6059,
+        "avg_r": -0.0036,
+        "mdd_r": 12.87,
+        "sharpe": -0.0313,
+        "gross_profit": 65.08,
+        "gross_loss": 65.69
+      },
+      "GBPUSD": {
+        "total_trades": 157,
+        "wins": 96,
+        "losses": 61,
+        "pf": 1.0328,
+        "wr": 0.6115,
+        "avg_r": 0.012,
+        "mdd_r": 12.65,
+        "sharpe": 0.1071,
+        "gross_profit": 59.43,
+        "gross_loss": 57.54
+      },
+      "USDJPY": {
+        "total_trades": 165,
+        "wins": 94,
+        "losses": 71,
+        "pf": 0.8753,
+        "wr": 0.5697,
+        "avg_r": -0.0501,
+        "mdd_r": 22.69,
+        "sharpe": -0.442,
+        "gross_profit": 58.07,
+        "gross_loss": 66.34
+      },
+      "USDCHF": {
+        "total_trades": 155,
+        "wins": 104,
+        "losses": 51,
+        "pf": 1.1969,
+        "wr": 0.671,
+        "avg_r": 0.0622,
+        "mdd_r": 8.26,
+        "sharpe": 0.5909,
+        "gross_profit": 58.63,
+        "gross_loss": 48.99
+      },
+      "USDCAD": {
+        "total_trades": 174,
+        "wins": 102,
+        "losses": 72,
+        "pf": 0.9504,
+        "wr": 0.5862,
+        "avg_r": -0.019,
+        "mdd_r": 11.26,
+        "sharpe": -0.1669,
+        "gross_profit": 63.22,
+        "gross_loss": 66.52
+      },
+      "AUDUSD": {
+        "total_trades": 166,
+        "wins": 101,
+        "losses": 65,
+        "pf": 1.0143,
+        "wr": 0.6084,
+        "avg_r": 0.0055,
+        "mdd_r": 11.21,
+        "sharpe": 0.0476,
+        "gross_profit": 64.91,
+        "gross_loss": 63.99
+      },
+      "NZDUSD": {
+        "total_trades": 174,
+        "wins": 115,
+        "losses": 59,
+        "pf": 1.2262,
+        "wr": 0.6609,
+        "avg_r": 0.0724,
+        "mdd_r": 5.13,
+        "sharpe": 0.6718,
+        "gross_profit": 68.26,
+        "gross_loss": 55.67
+      },
+      "EURJPY": {
+        "total_trades": 164,
+        "wins": 99,
+        "losses": 65,
+        "pf": 1.099,
+        "wr": 0.6037,
+        "avg_r": 0.0355,
+        "mdd_r": 9.16,
+        "sharpe": 0.3149,
+        "gross_profit": 64.67,
+        "gross_loss": 58.85
+      },
+      "GBPJPY": {
+        "total_trades": 159,
+        "wins": 91,
+        "losses": 68,
+        "pf": 0.8072,
+        "wr": 0.5723,
+        "avg_r": -0.0796,
+        "mdd_r": 23.39,
+        "sharpe": -0.719,
+        "gross_profit": 52.98,
+        "gross_loss": 65.63
+      },
+      "EURGBP": {
+        "total_trades": 161,
+        "wins": 98,
+        "losses": 63,
+        "pf": 0.8184,
+        "wr": 0.6087,
+        "avg_r": -0.0703,
+        "mdd_r": 18.88,
+        "sharpe": -0.6504,
+        "gross_profit": 50.99,
+        "gross_loss": 62.31
+      },
+      "XAUUSD": {
+        "total_trades": 235,
+        "wins": 134,
+        "losses": 101,
+        "pf": 0.7591,
+        "wr": 0.5702,
+        "avg_r": -0.1041,
+        "mdd_r": 31.94,
+        "sharpe": -0.9113,
+        "gross_profit": 77.06,
+        "gross_loss": 101.52
+      },
+      "XAGUSD": {
+        "total_trades": 316,
+        "wins": 167,
+        "losses": 149,
+        "pf": 0.734,
+        "wr": 0.5285,
+        "avg_r": -0.124,
+        "mdd_r": 42.43,
+        "sharpe": -1.0324,
+        "gross_profit": 108.14,
+        "gross_loss": 147.33
+      },
+      "BTCUSD": {
+        "total_trades": 366,
+        "wins": 156,
+        "losses": 210,
+        "pf": 0.1546,
+        "wr": 0.4262,
+        "avg_r": -1.3222,
+        "mdd_r": 485.19,
+        "sharpe": -3.5013,
+        "gross_profit": 88.51,
+        "gross_loss": 572.42
+      },
+      "ETHUSD": {
+        "total_trades": 275,
+        "wins": 151,
+        "losses": 124,
+        "pf": 0.8028,
+        "wr": 0.5491,
+        "avg_r": -0.0873,
+        "mdd_r": 33.04,
+        "sharpe": -0.7447,
+        "gross_profit": 97.7,
+        "gross_loss": 121.7
+      },
+      "SOLUSD": {
+        "total_trades": 204,
+        "wins": 112,
+        "losses": 92,
+        "pf": 0.803,
+        "wr": 0.549,
+        "avg_r": -0.0869,
+        "mdd_r": 26.04,
+        "sharpe": -0.7367,
+        "gross_profit": 72.26,
+        "gross_loss": 89.99
+      },
+      "US500": {
+        "total_trades": 176,
+        "wins": 92,
+        "losses": 84,
+        "pf": 0.6178,
+        "wr": 0.5227,
+        "avg_r": -0.1804,
+        "mdd_r": 40.42,
+        "sharpe": -1.5903,
+        "gross_profit": 51.32,
+        "gross_loss": 83.07
+      },
+      "NAS100": {
+        "total_trades": 247,
+        "wins": 148,
+        "losses": 99,
+        "pf": 0.9502,
+        "wr": 0.5992,
+        "avg_r": -0.0198,
+        "mdd_r": 27.94,
+        "sharpe": -0.1645,
+        "gross_profit": 93.58,
+        "gross_loss": 98.48
+      },
+      "US30": {
+        "total_trades": 123,
+        "wins": 53,
+        "losses": 70,
+        "pf": 0.4201,
+        "wr": 0.4309,
+        "avg_r": -0.3205,
+        "mdd_r": 40.64,
+        "sharpe": -2.9368,
+        "gross_profit": 28.56,
+        "gross_loss": 67.99
+      }
+    }
+  },
+  "attribution": {
+    "strategy_contributions": {
+      "MM-002": {
+        "total_pnl_r": -670.63,
+        "alpha_source": "Weekend gap mean reversion (Friday close \u2192 Monday open fade)",
+        "n_trades": 3587,
+        "win_rate": 0.562,
+        "contribution_pct": 100.8,
+        "max_dd_r": 696.1
+      },
+      "MM-012": {
+        "total_pnl_r": 5.15,
+        "alpha_source": "Weekend gap fill (similar to MM-002 but different TP/SL logic)",
+        "n_trades": 69,
+        "win_rate": 0.2464,
+        "contribution_pct": -0.8,
+        "max_dd_r": 16.63
+      }
+    },
+    "correlation_matrix": {
+      "MM-002": {
+        "MM-002": 1.0,
+        "MM-012": 0.06313063725507059
+      },
+      "MM-012": {
+        "MM-002": 0.06313063725507059,
+        "MM-012": 1.0
+      }
+    },
+    "total_pnl_r": -665.48
+  },
+  "graveyard": {
+    "MM-019": {
+      "name": "Order Block Retest",
+      "type": "SMC Refinement Layer",
+      "pf": 0.537,
+      "sharpe": -2.5,
+      "trades": 83,
+      "wr": 0.3494,
+      "avg_r": -0.3012,
+      "mdd_r": 28.0,
+      "verdict": "REJECT",
+      "reason": "SMC refinement layer failed as standalone. OB retest without full 8-Gate pipeline context produces too many false signals. This should only run as Gate 5 filter inside the SMC system, never independently.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-020": {
+      "name": "Fair Value Gap Fill",
+      "type": "SMC Refinement Layer",
+      "pf": 0.5304,
+      "sharpe": -2.8,
+      "trades": 176,
+      "wr": 0.3466,
+      "avg_r": -0.3068,
+      "mdd_r": 58.0,
+      "verdict": "REJECT",
+      "reason": "FVG fill without full 8-Gate context is unprofitable. FVGs are too common and need structural confluence to filter. Same as MM-019: this is a Gate 5 filter, not a standalone signal generator.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-021": {
+      "name": "Market Structure Shift Entry",
+      "type": "SMC Refinement Layer",
+      "pf": 0.5742,
+      "sharpe": -2.2,
+      "trades": 196,
+      "wr": 0.2653,
+      "avg_r": -0.3081,
+      "mdd_r": 68.78,
+      "verdict": "REJECT",
+      "reason": "MSS standalone produces massive drawdown. 26.5% win rate indicates the shift detection is too sensitive without the full gate pipeline. This is a Gate 6 component, not a standalone strategy.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-022": {
+      "name": "Session High/Low Raid + Reversal",
+      "type": "SMC Extension",
+      "pf": 0,
+      "sharpe": 0,
+      "trades": 0,
+      "wr": 0,
+      "avg_r": 0,
+      "mdd_r": 0,
+      "verdict": "REJECT",
+      "reason": "Generated ZERO signals in backtesting. Session high/low raid detection logic is too restrictive. The session extremes are already captured by Gate 1 (Session) and Gate 5 (Liquidity Sweep) in the 8-Gate SMC system. No standalone value.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-024": {
+      "name": "NY Reversal",
+      "type": "Standalone Reversal",
+      "pf": 0.1071,
+      "sharpe": -5.5,
+      "trades": 31,
+      "wr": 0.0968,
+      "avg_r": -0.8065,
+      "mdd_r": 24.0,
+      "verdict": "REJECT",
+      "reason": "Catastrophic: 9.7% win rate, -0.81 avg R. London session extreme + candlestick reversal at NY open simply does not work. The proximity and SL parameters are too tight, or the premise itself is flawed \u2014 London extremes frequently extend into NY, they don't reverse.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-025": {
+      "name": "ATR Compression Breakout v2",
+      "type": "Standalone Breakout",
+      "pf": 0.4545,
+      "sharpe": -3.0,
+      "trades": 208,
+      "wr": 0.3125,
+      "avg_r": -0.375,
+      "mdd_r": 77.0,
+      "verdict": "REJECT",
+      "reason": "Despite ATR contraction requirement, volume confirmation, and 4-bar hold rule, this is still effectively a Donchian channel system with extra steps. 31% WR on 208 trades confirms: volatility compression breakouts in isolation don't produce enough directional edge. The market often compresses and then ranges further before breaking out.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-023": {
+      "name": "London Breakout",
+      "type": "Standalone Breakout",
+      "pf": 0.6986,
+      "sharpe": -1.5,
+      "trades": 372,
+      "wr": 0.4113,
+      "avg_r": -0.1774,
+      "mdd_r": 66.0,
+      "verdict": "REJECT",
+      "reason": "Classic London breakout fails: 41% WR on 372 trades. Asian range compression + London breakout is a well-known setup that has been largely arbed away. The compression filter doesn't help because compressed ranges break out in random directions.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-003": {
+      "name": "Key Level Defensive Fade",
+      "type": "Defensive Entry",
+      "pf": 0.5493,
+      "sharpe": -2.0,
+      "trades": 110,
+      "wr": 0.3545,
+      "avg_r": -0.2909,
+      "mdd_r": 36.0,
+      "verdict": "REJECT",
+      "reason": "Weekly key level wick rejections don't produce enough follow-through. 35% WR suggests the 'wick and close back inside' pattern is not a reliable rejection signal \u2014 it often represents continuation (price testing a level before breaking through). Only ETHUSD pair was marginally profitable.",
+      "buried_date": "2026-06-07"
+    },
+    "MM-009": {
+      "name": "Liquidity Sweep Quick Reversal",
+      "type": "Reversal (Instrument-Locked)",
+      "pf": 0.84,
+      "sharpe": -0.3,
+      "trades": 46,
+      "wr": 0.4565,
+      "avg_r": -0.087,
+      "mdd_r": 5.0,
+      "verdict": "MARGINAL_REJECT",
+      "reason": "PF 0.84 portfolio-wide despite instrument locking to NAS100/ETHUSD/XAGUSD/US30. Was marginally profitable in earlier tests but V4 shows deterioration. ETHUSD pair alone is profitable (PF 2.0, 67% WR) but sample is tiny. The liquidity sweep concept is valid but better executed through the full 8-Gate SMC pipeline (Gate 5). Standalone, this is too noisy.",
+      "buried_date": "2026-06-07"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+[project]
+name = "marketmate-refactored"
+version = "1.0.0"
+description = "MarketMate Refactored — Signal Engine + Telegram Delivery"
+requires-python = ">=3.12"
+
+[project.scripts]
+marketmate = "signal_engine.main:main"

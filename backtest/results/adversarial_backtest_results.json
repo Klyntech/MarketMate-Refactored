@@ -1,0 +1,840 @@
+{
+  "timestamp": "2026-06-06T09:09:53.692255",
+  "verdict": "SMALL_REAL_EDGE",
+  "red_flags": {
+    "baseline": []
+  },
+  "baseline": {
+    "total_trades": 437,
+    "winning_trades": 276,
+    "losing_trades": 161,
+    "win_rate": 0.6316,
+    "avg_win_pct": 5.2208,
+    "avg_loss_pct": -3.383,
+    "profit_factor": 2.6455,
+    "expectancy_pct": 2.050968,
+    "sharpe_ratio": 4.9029,
+    "sortino_ratio": 9.2037,
+    "max_drawdown_pct": 20.3363,
+    "max_consecutive_losses": 15,
+    "avg_rr_achieved": 2.0,
+    "calmar_ratio": 25.4149,
+    "avg_holding_bars": 7.72,
+    "tp1_hit_rate": 0.6316,
+    "tp2_hit_rate": 0.1007,
+    "tp3_hit_rate": 0.0549,
+    "sl_hit_rate": 0.3684,
+    "buy_trades": 190,
+    "sell_trades": 247,
+    "buy_win_rate": 0.7105,
+    "sell_win_rate": 0.5709,
+    "per_instrument": {
+      "EURUSD": 27,
+      "GBPUSD": 27,
+      "USDJPY": 16,
+      "USDCHF": 27,
+      "AUDUSD": 30,
+      "NZDUSD": 24,
+      "USDCAD": 28,
+      "EURJPY": 5,
+      "GBPJPY": 5,
+      "EURGBP": 37,
+      "XAUUSD": 18,
+      "XAGUSD": 30,
+      "BTCUSD": 24,
+      "ETHUSD": 24,
+      "SOLUSD": 29,
+      "BNBUSD": 29,
+      "US500": 15,
+      "NAS100": 6,
+      "US30": 20,
+      "GER40": 16
+    },
+    "per_asset_class": {
+      "forex": {
+        "count": 226,
+        "win_rate": 0.584070796460177,
+        "avg_pnl_pct": 0.21611504424778769
+      },
+      "metals": {
+        "count": 48,
+        "win_rate": 0.7291666666666666,
+        "avg_pnl_pct": 2.347875
+      },
+      "crypto": {
+        "count": 106,
+        "win_rate": 0.7358490566037735,
+        "avg_pnl_pct": 6.6508349056603775
+      },
+      "indices": {
+        "count": 57,
+        "win_rate": 0.543859649122807,
+        "avg_pnl_pct": 0.5218298245614036
+      }
+    }
+  },
+  "tests": {
+    "remove_g7": {
+      "total_trades": 921,
+      "winning_trades": 557,
+      "losing_trades": 364,
+      "win_rate": 0.6048,
+      "avg_win_pct": 5.6381,
+      "avg_loss_pct": -4.2344,
+      "profit_factor": 2.0375,
+      "expectancy_pct": 1.736269,
+      "sharpe_ratio": 3.7287,
+      "sortino_ratio": 5.9764,
+      "max_drawdown_pct": 19.5739,
+      "max_consecutive_losses": 12,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 22.3533,
+      "avg_holding_bars": 7.9,
+      "tp1_hit_rate": 0.6048,
+      "tp2_hit_rate": 0.0684,
+      "tp3_hit_rate": 0.038,
+      "sl_hit_rate": 0.3952,
+      "buy_trades": 503,
+      "sell_trades": 418,
+      "buy_win_rate": 0.5964,
+      "sell_win_rate": 0.6148,
+      "per_instrument": {
+        "EURUSD": 41,
+        "GBPUSD": 51,
+        "USDJPY": 40,
+        "USDCHF": 52,
+        "AUDUSD": 50,
+        "NZDUSD": 52,
+        "USDCAD": 34,
+        "EURJPY": 26,
+        "GBPJPY": 23,
+        "EURGBP": 55,
+        "XAUUSD": 28,
+        "XAGUSD": 57,
+        "BTCUSD": 65,
+        "ETHUSD": 68,
+        "SOLUSD": 79,
+        "BNBUSD": 60,
+        "US500": 40,
+        "NAS100": 28,
+        "US30": 44,
+        "GER40": 28
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 424,
+          "win_rate": 0.5660377358490566,
+          "avg_pnl_pct": 0.1798372641509434
+        },
+        "metals": {
+          "count": 85,
+          "win_rate": 0.611764705882353,
+          "avg_pnl_pct": 1.164964705882353
+        },
+        "crypto": {
+          "count": 272,
+          "win_rate": 0.6838235294117647,
+          "avg_pnl_pct": 4.901369852941177
+        },
+        "indices": {
+          "count": 140,
+          "win_rate": 0.5642857142857143,
+          "avg_pnl_pct": 0.6475564285714287
+        }
+      }
+    },
+    "remove_g7_instruments": {
+      "total_trades": 282,
+      "winning_trades": 176,
+      "losing_trades": 106,
+      "win_rate": 0.6241,
+      "avg_win_pct": 7.1508,
+      "avg_loss_pct": -4.1722,
+      "profit_factor": 2.8457,
+      "expectancy_pct": 2.89463,
+      "sharpe_ratio": 5.7299,
+      "sortino_ratio": 11.146,
+      "max_drawdown_pct": 19.5498,
+      "max_consecutive_losses": 5,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 37.3123,
+      "avg_holding_bars": 7.28,
+      "tp1_hit_rate": 0.6241,
+      "tp2_hit_rate": 0.1206,
+      "tp3_hit_rate": 0.0745,
+      "sl_hit_rate": 0.3759,
+      "buy_trades": 106,
+      "sell_trades": 176,
+      "buy_win_rate": 0.6887,
+      "sell_win_rate": 0.5852,
+      "per_instrument": {
+        "NZDUSD": 24,
+        "USDCAD": 28,
+        "EURGBP": 37,
+        "XAGUSD": 30,
+        "BTCUSD": 24,
+        "ETHUSD": 24,
+        "SOLUSD": 29,
+        "BNBUSD": 29,
+        "US500": 15,
+        "NAS100": 6,
+        "US30": 20,
+        "GER40": 16
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 89,
+          "win_rate": 0.5056179775280899,
+          "avg_pnl_pct": -0.003649438202247213
+        },
+        "metals": {
+          "count": 30,
+          "win_rate": 0.7333333333333333,
+          "avg_pnl_pct": 2.7292533333333338
+        },
+        "crypto": {
+          "count": 106,
+          "win_rate": 0.7358490566037735,
+          "avg_pnl_pct": 6.6508349056603775
+        },
+        "indices": {
+          "count": 57,
+          "win_rate": 0.543859649122807,
+          "avg_pnl_pct": 0.5218298245614036
+        }
+      }
+    },
+    "randomize_entries": {
+      "total_trades": 437,
+      "winning_trades": 276,
+      "losing_trades": 161,
+      "win_rate": 0.6316,
+      "avg_win_pct": 4.8116,
+      "avg_loss_pct": -3.513,
+      "profit_factor": 2.348,
+      "expectancy_pct": 1.744626,
+      "sharpe_ratio": 4.3627,
+      "sortino_ratio": 7.638,
+      "max_drawdown_pct": 16.6836,
+      "max_consecutive_losses": 10,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 26.352,
+      "avg_holding_bars": 7.97,
+      "tp1_hit_rate": 0.6316,
+      "tp2_hit_rate": 0.0732,
+      "tp3_hit_rate": 0.0412,
+      "sl_hit_rate": 0.3684,
+      "buy_trades": 190,
+      "sell_trades": 247,
+      "buy_win_rate": 0.7,
+      "sell_win_rate": 0.5789,
+      "per_instrument": {
+        "EURUSD": 27,
+        "GBPUSD": 27,
+        "USDJPY": 16,
+        "USDCHF": 27,
+        "AUDUSD": 30,
+        "NZDUSD": 24,
+        "USDCAD": 28,
+        "EURJPY": 5,
+        "GBPJPY": 5,
+        "EURGBP": 37,
+        "XAUUSD": 18,
+        "XAGUSD": 30,
+        "BTCUSD": 24,
+        "ETHUSD": 24,
+        "SOLUSD": 29,
+        "BNBUSD": 29,
+        "US500": 15,
+        "NAS100": 6,
+        "US30": 20,
+        "GER40": 16
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 226,
+          "win_rate": 0.588495575221239,
+          "avg_pnl_pct": 0.24986238938053099
+        },
+        "metals": {
+          "count": 48,
+          "win_rate": 0.7916666666666666,
+          "avg_pnl_pct": 2.280291666666667
+        },
+        "crypto": {
+          "count": 106,
+          "win_rate": 0.7075471698113207,
+          "avg_pnl_pct": 5.5003764150943395
+        },
+        "indices": {
+          "count": 57,
+          "win_rate": 0.5263157894736842,
+          "avg_pnl_pct": 0.23576491228070173
+        }
+      }
+    },
+    "shift_entries": {
+      "total_trades": 437,
+      "winning_trades": 265,
+      "losing_trades": 172,
+      "win_rate": 0.6064,
+      "avg_win_pct": 5.1926,
+      "avg_loss_pct": -3.4695,
+      "profit_factor": 2.3059,
+      "expectancy_pct": 1.783291,
+      "sharpe_ratio": 4.247,
+      "sortino_ratio": 7.9316,
+      "max_drawdown_pct": 18.9248,
+      "max_consecutive_losses": 15,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 23.746,
+      "avg_holding_bars": 8.12,
+      "tp1_hit_rate": 0.6064,
+      "tp2_hit_rate": 0.0984,
+      "tp3_hit_rate": 0.0549,
+      "sl_hit_rate": 0.3936,
+      "buy_trades": 190,
+      "sell_trades": 247,
+      "buy_win_rate": 0.6789,
+      "sell_win_rate": 0.5506,
+      "per_instrument": {
+        "EURUSD": 27,
+        "GBPUSD": 27,
+        "USDJPY": 16,
+        "USDCHF": 27,
+        "AUDUSD": 30,
+        "NZDUSD": 24,
+        "USDCAD": 28,
+        "EURJPY": 5,
+        "GBPJPY": 5,
+        "EURGBP": 37,
+        "XAUUSD": 18,
+        "XAGUSD": 30,
+        "BTCUSD": 24,
+        "ETHUSD": 24,
+        "SOLUSD": 29,
+        "BNBUSD": 29,
+        "US500": 15,
+        "NAS100": 6,
+        "US30": 20,
+        "GER40": 16
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 226,
+          "win_rate": 0.5752212389380531,
+          "avg_pnl_pct": 0.19878008849557519
+        },
+        "metals": {
+          "count": 48,
+          "win_rate": 0.7083333333333334,
+          "avg_pnl_pct": 2.196975
+        },
+        "crypto": {
+          "count": 106,
+          "win_rate": 0.6981132075471698,
+          "avg_pnl_pct": 5.889898113207546
+        },
+        "indices": {
+          "count": 57,
+          "win_rate": 0.47368421052631576,
+          "avg_pnl_pct": 0.08052280701754383
+        }
+      }
+    },
+    "double_spread": {
+      "total_trades": 437,
+      "winning_trades": 276,
+      "losing_trades": 161,
+      "win_rate": 0.6316,
+      "avg_win_pct": 5.1934,
+      "avg_loss_pct": -3.4061,
+      "profit_factor": 2.6138,
+      "expectancy_pct": 2.025178,
+      "sharpe_ratio": 4.8455,
+      "sortino_ratio": 9.0619,
+      "max_drawdown_pct": 20.8176,
+      "max_consecutive_losses": 15,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 24.5151,
+      "avg_holding_bars": 7.72,
+      "tp1_hit_rate": 0.6316,
+      "tp2_hit_rate": 0.1007,
+      "tp3_hit_rate": 0.0549,
+      "sl_hit_rate": 0.3684,
+      "buy_trades": 190,
+      "sell_trades": 247,
+      "buy_win_rate": 0.7105,
+      "sell_win_rate": 0.5709,
+      "per_instrument": {
+        "EURUSD": 27,
+        "GBPUSD": 27,
+        "USDJPY": 16,
+        "USDCHF": 27,
+        "AUDUSD": 30,
+        "NZDUSD": 24,
+        "USDCAD": 28,
+        "EURJPY": 5,
+        "GBPJPY": 5,
+        "EURGBP": 37,
+        "XAUUSD": 18,
+        "XAGUSD": 30,
+        "BTCUSD": 24,
+        "ETHUSD": 24,
+        "SOLUSD": 29,
+        "BNBUSD": 29,
+        "US500": 15,
+        "NAS100": 6,
+        "US30": 20,
+        "GER40": 16
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 226,
+          "win_rate": 0.584070796460177,
+          "avg_pnl_pct": 0.20111504424778764
+        },
+        "metals": {
+          "count": 48,
+          "win_rate": 0.7291666666666666,
+          "avg_pnl_pct": 2.317875
+        },
+        "crypto": {
+          "count": 106,
+          "win_rate": 0.7358490566037735,
+          "avg_pnl_pct": 6.600834905660379
+        },
+        "indices": {
+          "count": 57,
+          "win_rate": 0.543859649122807,
+          "avg_pnl_pct": 0.5018298245614036
+        }
+      }
+    },
+    "triple_spread": {
+      "total_trades": 437,
+      "winning_trades": 276,
+      "losing_trades": 161,
+      "win_rate": 0.6316,
+      "avg_win_pct": 5.1661,
+      "avg_loss_pct": -3.4292,
+      "profit_factor": 2.5825,
+      "expectancy_pct": 1.999389,
+      "sharpe_ratio": 4.788,
+      "sortino_ratio": 8.9209,
+      "max_drawdown_pct": 21.3081,
+      "max_consecutive_losses": 15,
+      "avg_rr_achieved": 2.0,
+      "calmar_ratio": 23.6457,
+      "avg_holding_bars": 7.72,
+      "tp1_hit_rate": 0.6316,
+      "tp2_hit_rate": 0.1007,
+      "tp3_hit_rate": 0.0549,
+      "sl_hit_rate": 0.3684,
+      "buy_trades": 190,
+      "sell_trades": 247,
+      "buy_win_rate": 0.7105,
+      "sell_win_rate": 0.5709,
+      "per_instrument": {
+        "EURUSD": 27,
+        "GBPUSD": 27,
+        "USDJPY": 16,
+        "USDCHF": 27,
+        "AUDUSD": 30,
+        "NZDUSD": 24,
+        "USDCAD": 28,
+        "EURJPY": 5,
+        "GBPJPY": 5,
+        "EURGBP": 37,
+        "XAUUSD": 18,
+        "XAGUSD": 30,
+        "BTCUSD": 24,
+        "ETHUSD": 24,
+        "SOLUSD": 29,
+        "BNBUSD": 29,
+        "US500": 15,
+        "NAS100": 6,
+        "US30": 20,
+        "GER40": 16
+      },
+      "per_asset_class": {
+        "forex": {
+          "count": 226,
+          "win_rate": 0.584070796460177,
+          "avg_pnl_pct": 0.18611504424778758
+        },
+        "metals": {
+          "count": 48,
+          "win_rate": 0.7291666666666666,
+          "avg_pnl_pct": 2.2878750000000005
+        },
+        "crypto": {
+          "count": 106,
+          "win_rate": 0.7358490566037735,
+          "avg_pnl_pct": 6.550834905660379
+        },
+        "indices": {
+          "count": 57,
+          "win_rate": 0.543859649122807,
+          "avg_pnl_pct": 0.48182982456140355
+        }
+      }
+    },
+    "walk_forward": {
+      "Test 2023-2023": {
+        "total_trades": 23,
+        "winning_trades": 18,
+        "losing_trades": 5,
+        "win_rate": 0.7826,
+        "avg_win_pct": 9.0971,
+        "avg_loss_pct": -5.8029,
+        "profit_factor": 5.6436,
+        "expectancy_pct": 5.857943,
+        "sharpe_ratio": 10.6436,
+        "sortino_ratio": 90.8499,
+        "max_drawdown_pct": 20.4002,
+        "max_consecutive_losses": 4,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 72.362,
+        "avg_holding_bars": 5.43,
+        "tp1_hit_rate": 0.7826,
+        "tp2_hit_rate": 0.2609,
+        "tp3_hit_rate": 0.1739,
+        "sl_hit_rate": 0.2174,
+        "buy_trades": 13,
+        "sell_trades": 10,
+        "buy_win_rate": 1.0,
+        "sell_win_rate": 0.5,
+        "per_instrument": {
+          "EURUSD": 1,
+          "GBPUSD": 1,
+          "USDJPY": 0,
+          "USDCHF": 1,
+          "AUDUSD": 0,
+          "NZDUSD": 1,
+          "USDCAD": 0,
+          "EURJPY": 0,
+          "GBPJPY": 0,
+          "EURGBP": 0,
+          "XAUUSD": 0,
+          "XAGUSD": 0,
+          "BTCUSD": 9,
+          "ETHUSD": 3,
+          "SOLUSD": 7,
+          "BNBUSD": 0,
+          "US500": 0,
+          "NAS100": 0,
+          "US30": 0,
+          "GER40": 0
+        },
+        "per_asset_class": {
+          "forex": {
+            "count": 4,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 2.13765
+          },
+          "crypto": {
+            "count": 19,
+            "win_rate": 0.7368421052631579,
+            "avg_pnl_pct": 6.641163157894736
+          }
+        }
+      },
+      "Test 2024-2024": {
+        "total_trades": 7,
+        "winning_trades": 7,
+        "losing_trades": 0,
+        "win_rate": 1.0,
+        "avg_win_pct": 10.1409,
+        "avg_loss_pct": 0,
+        "profit_factor": 7098650000.0,
+        "expectancy_pct": 10.140929,
+        "sharpe_ratio": 16.8837,
+        "sortino_ratio": 0.0,
+        "max_drawdown_pct": 0.0,
+        "max_consecutive_losses": 0,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 0,
+        "avg_holding_bars": 4.0,
+        "tp1_hit_rate": 1.0,
+        "tp2_hit_rate": 0.4286,
+        "tp3_hit_rate": 0.2857,
+        "sl_hit_rate": 0.0,
+        "buy_trades": 4,
+        "sell_trades": 3,
+        "buy_win_rate": 1.0,
+        "sell_win_rate": 1.0,
+        "per_instrument": {
+          "EURUSD": 1,
+          "GBPUSD": 0,
+          "USDJPY": 0,
+          "USDCHF": 0,
+          "AUDUSD": 0,
+          "NZDUSD": 0,
+          "USDCAD": 0,
+          "EURJPY": 0,
+          "GBPJPY": 0,
+          "EURGBP": 0,
+          "XAUUSD": 1,
+          "XAGUSD": 1,
+          "BTCUSD": 0,
+          "ETHUSD": 1,
+          "SOLUSD": 2,
+          "BNBUSD": 0,
+          "US500": 0,
+          "NAS100": 0,
+          "US30": 1,
+          "GER40": 0
+        },
+        "per_asset_class": {
+          "forex": {
+            "count": 1,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 1.2868
+          },
+          "metals": {
+            "count": 2,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 5.23355
+          },
+          "crypto": {
+            "count": 3,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 18.582033333333335
+          },
+          "indices": {
+            "count": 1,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 3.4865
+          }
+        }
+      },
+      "Test 2025-2025": {
+        "total_trades": 11,
+        "winning_trades": 9,
+        "losing_trades": 2,
+        "win_rate": 0.8182,
+        "avg_win_pct": 8.6132,
+        "avg_loss_pct": -1.5446,
+        "profit_factor": 25.0926,
+        "expectancy_pct": 6.766291,
+        "sharpe_ratio": 22.5205,
+        "sortino_ratio": 3448.2035,
+        "max_drawdown_pct": 1.6,
+        "max_consecutive_losses": 2,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 1065.68,
+        "avg_holding_bars": 8.0,
+        "tp1_hit_rate": 0.8182,
+        "tp2_hit_rate": 0.0909,
+        "tp3_hit_rate": 0.0909,
+        "sl_hit_rate": 0.1818,
+        "buy_trades": 1,
+        "sell_trades": 10,
+        "buy_win_rate": 1.0,
+        "sell_win_rate": 0.8,
+        "per_instrument": {
+          "EURUSD": 0,
+          "GBPUSD": 0,
+          "USDJPY": 0,
+          "USDCHF": 0,
+          "AUDUSD": 0,
+          "NZDUSD": 2,
+          "USDCAD": 0,
+          "EURJPY": 0,
+          "GBPJPY": 0,
+          "EURGBP": 0,
+          "XAUUSD": 0,
+          "XAGUSD": 0,
+          "BTCUSD": 5,
+          "ETHUSD": 1,
+          "SOLUSD": 2,
+          "BNBUSD": 1,
+          "GER40": 0
+        },
+        "per_asset_class": {
+          "forex": {
+            "count": 2,
+            "win_rate": 0.0,
+            "avg_pnl_pct": -1.54465
+          },
+          "crypto": {
+            "count": 9,
+            "win_rate": 1.0,
+            "avg_pnl_pct": 8.613166666666668
+          }
+        }
+      }
+    },
+    "monte_carlo": {
+      "mean_final_equity": 9.958996757029999,
+      "median_final_equity": 9.943722999999999,
+      "p5_final_equity": 7.6958978000000045,
+      "p95_final_equity": 12.261514300000004,
+      "mean_max_drawdown_pct": 15.65522498646075,
+      "median_max_drawdown_pct": 13.737986666126734,
+      "p95_max_drawdown_pct": 31.029442337139756,
+      "worst_max_drawdown_pct": 121.11164174803423,
+      "ruin_probability": 0.07452,
+      "pct_profitable_runs": 1.0
+    },
+    "cross_market": {
+      "forex": {
+        "total_trades": 226,
+        "winning_trades": 132,
+        "losing_trades": 94,
+        "win_rate": 0.5841,
+        "avg_win_pct": 1.5388,
+        "avg_loss_pct": -1.6412,
+        "profit_factor": 1.3166,
+        "expectancy_pct": 0.216115,
+        "sharpe_ratio": 2.0497,
+        "sortino_ratio": 5.8111,
+        "max_drawdown_pct": 20.3363,
+        "max_consecutive_losses": 15,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 2.678,
+        "avg_holding_bars": 9.44,
+        "tp1_hit_rate": 0.5841,
+        "tp2_hit_rate": 0.0177,
+        "tp3_hit_rate": 0.0044,
+        "sl_hit_rate": 0.4159,
+        "buy_trades": 118,
+        "sell_trades": 108,
+        "buy_win_rate": 0.6441,
+        "sell_win_rate": 0.5185,
+        "per_instrument": {
+          "EURUSD": 27,
+          "GBPUSD": 27,
+          "USDJPY": 16,
+          "USDCHF": 27,
+          "AUDUSD": 30,
+          "NZDUSD": 24,
+          "USDCAD": 28,
+          "EURJPY": 5,
+          "GBPJPY": 5,
+          "EURGBP": 37
+        },
+        "per_asset_class": {
+          "forex": {
+            "count": 226,
+            "win_rate": 0.584070796460177,
+            "avg_pnl_pct": 0.21611504424778769
+          }
+        }
+      },
+      "metals": {
+        "total_trades": 48,
+        "winning_trades": 35,
+        "losing_trades": 13,
+        "win_rate": 0.7292,
+        "avg_win_pct": 4.3426,
+        "avg_loss_pct": -3.0226,
+        "profit_factor": 3.8681,
+        "expectancy_pct": 2.347875,
+        "sharpe_ratio": 9.7309,
+        "sortino_ratio": 34.0581,
+        "max_drawdown_pct": 7.6743,
+        "max_consecutive_losses": 3,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 77.0966,
+        "avg_holding_bars": 2.44,
+        "tp1_hit_rate": 0.7292,
+        "tp2_hit_rate": 0.2917,
+        "tp3_hit_rate": 0.125,
+        "sl_hit_rate": 0.2708,
+        "buy_trades": 18,
+        "sell_trades": 30,
+        "buy_win_rate": 0.9444,
+        "sell_win_rate": 0.6,
+        "per_instrument": {
+          "XAUUSD": 18,
+          "XAGUSD": 30
+        },
+        "per_asset_class": {
+          "metals": {
+            "count": 48,
+            "win_rate": 0.7291666666666666,
+            "avg_pnl_pct": 2.347875
+          }
+        }
+      },
+      "crypto": {
+        "total_trades": 106,
+        "winning_trades": 78,
+        "losing_trades": 28,
+        "win_rate": 0.7358,
+        "avg_win_pct": 12.3965,
+        "avg_loss_pct": -9.3551,
+        "profit_factor": 3.6914,
+        "expectancy_pct": 6.650835,
+        "sharpe_ratio": 9.2454,
+        "sortino_ratio": 22.2507,
+        "max_drawdown_pct": 32.1593,
+        "max_consecutive_losses": 4,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 52.1158,
+        "avg_holding_bars": 8.1,
+        "tp1_hit_rate": 0.7358,
+        "tp2_hit_rate": 0.1887,
+        "tp3_hit_rate": 0.1226,
+        "sl_hit_rate": 0.2642,
+        "buy_trades": 34,
+        "sell_trades": 72,
+        "buy_win_rate": 0.8824,
+        "sell_win_rate": 0.6667,
+        "per_instrument": {
+          "BTCUSD": 24,
+          "ETHUSD": 24,
+          "SOLUSD": 29,
+          "BNBUSD": 29
+        },
+        "per_asset_class": {
+          "crypto": {
+            "count": 106,
+            "win_rate": 0.7358490566037735,
+            "avg_pnl_pct": 6.6508349056603775
+          }
+        }
+      },
+      "indices": {
+        "total_trades": 57,
+        "winning_trades": 31,
+        "losing_trades": 26,
+        "win_rate": 0.5439,
+        "avg_win_pct": 3.8355,
+        "avg_loss_pct": -3.4291,
+        "profit_factor": 1.3336,
+        "expectancy_pct": 0.52183,
+        "sharpe_ratio": 2.0097,
+        "sortino_ratio": 5.9491,
+        "max_drawdown_pct": 16.0684,
+        "max_consecutive_losses": 4,
+        "avg_rr_achieved": 2.0,
+        "calmar_ratio": 8.1838,
+        "avg_holding_bars": 4.65,
+        "tp1_hit_rate": 0.5439,
+        "tp2_hit_rate": 0.1053,
+        "tp3_hit_rate": 0.0702,
+        "sl_hit_rate": 0.4561,
+        "buy_trades": 20,
+        "sell_trades": 37,
+        "buy_win_rate": 0.6,
+        "sell_win_rate": 0.5135,
+        "per_instrument": {
+          "US500": 15,
+          "NAS100": 6,
+          "US30": 20,
+          "GER40": 16
+        },
+        "per_asset_class": {
+          "indices": {
+            "count": 57,
+            "win_rate": 0.543859649122807,
+            "avg_pnl_pct": 0.5218298245614036
+          }
+        }
+      }
+    }
+  }
+}

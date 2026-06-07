@@ -1,0 +1,131 @@
+{
+  "timestamp": "2026-06-07T02:21:35.281844",
+  "elapsed_seconds": 15.6,
+  "optimized_pairs": {},
+  "profitable_pairs_count": 0,
+  "portfolio_trades": 576,
+  "portfolio_stats": {
+    "total_trades": 576,
+    "win_rate": 0.5191,
+    "profit_factor": 1.0771,
+    "avg_r": 0.0368
+  },
+  "growth_simulation": {
+    "risk_3pct": {
+      "final_balance": 21.92,
+      "return_pct": 46.2,
+      "max_dd": 45.8,
+      "target_hit": "False",
+      "trades_taken": 576
+    },
+    "risk_5pct": {
+      "final_balance": 15.86,
+      "return_pct": 5.7,
+      "max_dd": 50.34,
+      "target_hit": "False",
+      "trades_taken": 144
+    },
+    "risk_8pct": {
+      "final_balance": 22.86,
+      "return_pct": 52.4,
+      "max_dd": 50.62,
+      "target_hit": "False",
+      "trades_taken": 91
+    },
+    "risk_10pct": {
+      "final_balance": 26.86,
+      "return_pct": 79.0,
+      "max_dd": 53.12,
+      "target_hit": "False",
+      "trades_taken": 82
+    },
+    "risk_12pct": {
+      "final_balance": 31.13,
+      "return_pct": 107.6,
+      "max_dd": 54.89,
+      "target_hit": "False",
+      "trades_taken": 81
+    },
+    "risk_15pct": {
+      "final_balance": 43.24,
+      "return_pct": 188.2,
+      "max_dd": 50.12,
+      "target_hit": "False",
+      "trades_taken": 79
+    },
+    "risk_20pct": {
+      "final_balance": 43.39,
+      "return_pct": 189.3,
+      "max_dd": 56.51,
+      "target_hit": "False",
+      "trades_taken": 42
+    }
+  },
+  "monte_carlo": {
+    "risk_5pct": {
+      "prob_target": 0.0147,
+      "mean_final": 22.43,
+      "median_final": 21.24,
+      "p5_final": 21.24,
+      "p95_final": 21.24,
+      "mean_dd": 68.13,
+      "prob_ruin": 0.0
+    },
+    "risk_8pct": {
+      "prob_target": 0.1139,
+      "mean_final": 23.47,
+      "median_final": 13.18,
+      "p5_final": 13.18,
+      "p95_final": 103.79,
+      "mean_dd": 82.81,
+      "prob_ruin": 0.0
+    },
+    "risk_10pct": {
+      "prob_target": 0.1562,
+      "mean_final": 22.37,
+      "median_final": 7.19,
+      "p5_final": 7.19,
+      "p95_final": 105.82,
+      "mean_dd": 87.88,
+      "prob_ruin": 0.0
+    },
+    "risk_12pct": {
+      "prob_target": 0.1825,
+      "mean_final": 21.77,
+      "median_final": 3.11,
+      "p5_final": 3.11,
+      "p95_final": 107.76,
+      "mean_dd": 90.77,
+      "prob_ruin": 0.0
+    },
+    "risk_15pct": {
+      "prob_target": 0.2036,
+      "mean_final": 22.16,
+      "median_final": 0.57,
+      "p5_final": 0.57,
+      "p95_final": 109.99,
+      "mean_dd": 92.53,
+      "prob_ruin": 0.0
+    }
+  },
+  "walk_forward": [
+    {
+      "fold": 1,
+      "period": "2025-02-03 20:00:00+00:00 \u2192 2025-10-04 12:00:00+00:00",
+      "trades": 26,
+      "win_rate": 0.5385,
+      "profit_factor": 1.2119,
+      "avg_r": 0.0941
+    },
+    {
+      "fold": 2,
+      "period": "2025-10-04 16:00:00+00:00 \u2192 2026-06-05 08:00:00+00:00",
+      "trades": 17,
+      "win_rate": 0.6471,
+      "profit_factor": 1.8333,
+      "avg_r": 0.2941
+    }
+  ],
+  "walk_forward_all_positive": true,
+  "recommended_portfolio": []
+}

@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files (too large for git)
+*.parquet
+*.csv
+*.h5
+data_cache/
+backtest/data_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MongoDB
+*.mongodb
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Next.js (legacy)
+.next/
+node_modules/
+
+# Temporary files
+tmp/
+*.tmp
