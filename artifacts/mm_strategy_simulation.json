@@ -1,0 +1,1846 @@
+{
+  "timestamp": "2026-06-07T02:19:44.883704",
+  "elapsed_seconds": 15.6,
+  "instruments": [
+    "ETHUSD",
+    "BTCUSD",
+    "XAUUSD",
+    "XAGUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "NAS100",
+    "US30",
+    "US500"
+  ],
+  "strategy_ranking": [
+    {
+      "rank": 1,
+      "id": "MM-009",
+      "name": "Liquidity Sweep Quick Reversal",
+      "type": "reversal",
+      "total_trades": 576,
+      "win_rate": 0.5174,
+      "profit_factor": 1.0788,
+      "sharpe_ratio": 0.6007,
+      "avg_r": 0.0376,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 73,
+          "win_rate": 0.6164,
+          "profit_factor": 1.614,
+          "sharpe_ratio": 3.8253,
+          "avg_r": 0.232
+        },
+        "BTCUSD": {
+          "trades": 70,
+          "win_rate": 0.4143,
+          "profit_factor": 0.7223,
+          "sharpe_ratio": -2.5801,
+          "avg_r": -0.1593
+        },
+        "XAUUSD": {
+          "trades": 70,
+          "win_rate": 0.4857,
+          "profit_factor": 0.9444,
+          "sharpe_ratio": -0.4537,
+          "avg_r": -0.0286
+        },
+        "XAGUSD": {
+          "trades": 79,
+          "win_rate": 0.5696,
+          "profit_factor": 1.3438,
+          "sharpe_ratio": 2.3359,
+          "avg_r": 0.1439
+        },
+        "EURUSD": {
+          "trades": 75,
+          "win_rate": 0.4667,
+          "profit_factor": 0.875,
+          "sharpe_ratio": -1.0607,
+          "avg_r": -0.0667
+        },
+        "GBPUSD": {
+          "trades": 71,
+          "win_rate": 0.507,
+          "profit_factor": 1.0286,
+          "sharpe_ratio": 0.2236,
+          "avg_r": 0.0141
+        },
+        "USDJPY": {
+          "trades": 69,
+          "win_rate": 0.4783,
+          "profit_factor": 0.9284,
+          "sharpe_ratio": -0.5845,
+          "avg_r": -0.0362
+        },
+        "NAS100": {
+          "trades": 18,
+          "win_rate": 0.7222,
+          "profit_factor": 2.6,
+          "sharpe_ratio": 7.876,
+          "avg_r": 0.4444
+        },
+        "US30": {
+          "trades": 26,
+          "win_rate": 0.5769,
+          "profit_factor": 1.3636,
+          "sharpe_ratio": 2.4717,
+          "avg_r": 0.1538
+        },
+        "US500": {
+          "trades": 25,
+          "win_rate": 0.52,
+          "profit_factor": 1.0833,
+          "sharpe_ratio": 0.6355,
+          "avg_r": 0.04
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "id": "MM-012",
+      "name": "Gap Fill Weekend",
+      "type": "mean_reversion",
+      "total_trades": 558,
+      "win_rate": 0.491,
+      "profit_factor": 0.9648,
+      "sharpe_ratio": -0.2845,
+      "avg_r": -0.0179,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 1,
+          "win_rate": 0.0,
+          "profit_factor": 0.0,
+          "sharpe_ratio": 0,
+          "avg_r": -1.0
+        },
+        "BTCUSD": {
+          "trades": 1,
+          "win_rate": 0.0,
+          "profit_factor": 0.0,
+          "sharpe_ratio": 0,
+          "avg_r": -1.0
+        },
+        "XAUUSD": {
+          "trades": 73,
+          "win_rate": 0.4384,
+          "profit_factor": 0.7805,
+          "sharpe_ratio": -1.9722,
+          "avg_r": -0.1233
+        },
+        "XAGUSD": {
+          "trades": 67,
+          "win_rate": 0.4179,
+          "profit_factor": 0.7179,
+          "sharpe_ratio": -2.6421,
+          "avg_r": -0.1642
+        },
+        "EURUSD": {
+          "trades": 95,
+          "win_rate": 0.5158,
+          "profit_factor": 1.0652,
+          "sharpe_ratio": 0.5016,
+          "avg_r": 0.0316
+        },
+        "GBPUSD": {
+          "trades": 97,
+          "win_rate": 0.5464,
+          "profit_factor": 1.2045,
+          "sharpe_ratio": 1.4793,
+          "avg_r": 0.0928
+        },
+        "USDJPY": {
+          "trades": 95,
+          "win_rate": 0.4421,
+          "profit_factor": 0.7925,
+          "sharpe_ratio": -1.8505,
+          "avg_r": -0.1158
+        },
+        "NAS100": {
+          "trades": 45,
+          "win_rate": 0.6,
+          "profit_factor": 1.5,
+          "sharpe_ratio": 3.2404,
+          "avg_r": 0.2
+        },
+        "US30": {
+          "trades": 42,
+          "win_rate": 0.5476,
+          "profit_factor": 1.2105,
+          "sharpe_ratio": 1.5188,
+          "avg_r": 0.0952
+        },
+        "US500": {
+          "trades": 42,
+          "win_rate": 0.4762,
+          "profit_factor": 0.9091,
+          "sharpe_ratio": -0.7568,
+          "avg_r": -0.0476
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "id": "MM-014",
+      "name": "Fibonacci Retracement Entry",
+      "type": "trend",
+      "total_trades": 6967,
+      "win_rate": 0.4213,
+      "profit_factor": 0.7245,
+      "sharpe_ratio": -2.5088,
+      "avg_r": -0.1522,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 949,
+          "win_rate": 0.4542,
+          "profit_factor": 0.8139,
+          "sharpe_ratio": -1.5865,
+          "avg_r": -0.0954
+        },
+        "BTCUSD": {
+          "trades": 924,
+          "win_rate": 0.4459,
+          "profit_factor": 0.7768,
+          "sharpe_ratio": -1.9543,
+          "avg_r": -0.1172
+        },
+        "XAUUSD": {
+          "trades": 838,
+          "win_rate": 0.401,
+          "profit_factor": 0.6882,
+          "sharpe_ratio": -2.9113,
+          "avg_r": -0.1791
+        },
+        "XAGUSD": {
+          "trades": 755,
+          "win_rate": 0.4384,
+          "profit_factor": 0.784,
+          "sharpe_ratio": -1.8922,
+          "avg_r": -0.1151
+        },
+        "EURUSD": {
+          "trades": 901,
+          "win_rate": 0.4451,
+          "profit_factor": 0.8062,
+          "sharpe_ratio": -1.685,
+          "avg_r": -0.1038
+        },
+        "GBPUSD": {
+          "trades": 899,
+          "win_rate": 0.4338,
+          "profit_factor": 0.7451,
+          "sharpe_ratio": -2.2987,
+          "avg_r": -0.14
+        },
+        "USDJPY": {
+          "trades": 835,
+          "win_rate": 0.382,
+          "profit_factor": 0.611,
+          "sharpe_ratio": -3.8293,
+          "avg_r": -0.2247
+        },
+        "NAS100": {
+          "trades": 290,
+          "win_rate": 0.3586,
+          "profit_factor": 0.5852,
+          "sharpe_ratio": -4.2247,
+          "avg_r": -0.254
+        },
+        "US30": {
+          "trades": 320,
+          "win_rate": 0.3625,
+          "profit_factor": 0.5922,
+          "sharpe_ratio": -4.1572,
+          "avg_r": -0.2556
+        },
+        "US500": {
+          "trades": 256,
+          "win_rate": 0.3711,
+          "profit_factor": 0.6048,
+          "sharpe_ratio": -3.978,
+          "avg_r": -0.2427
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "id": "MM-017",
+      "name": "Heikin Ashi Trend Follow",
+      "type": "trend",
+      "total_trades": 3376,
+      "win_rate": 0.4171,
+      "profit_factor": 0.706,
+      "sharpe_ratio": -2.7603,
+      "avg_r": -0.1696,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 454,
+          "win_rate": 0.4097,
+          "profit_factor": 0.6769,
+          "sharpe_ratio": -3.0722,
+          "avg_r": -0.1857
+        },
+        "BTCUSD": {
+          "trades": 452,
+          "win_rate": 0.4204,
+          "profit_factor": 0.701,
+          "sharpe_ratio": -2.8113,
+          "avg_r": -0.1723
+        },
+        "XAUUSD": {
+          "trades": 354,
+          "win_rate": 0.4124,
+          "profit_factor": 0.7033,
+          "sharpe_ratio": -2.789,
+          "avg_r": -0.1707
+        },
+        "XAGUSD": {
+          "trades": 378,
+          "win_rate": 0.4048,
+          "profit_factor": 0.6662,
+          "sharpe_ratio": -3.2211,
+          "avg_r": -0.1963
+        },
+        "EURUSD": {
+          "trades": 432,
+          "win_rate": 0.4144,
+          "profit_factor": 0.7027,
+          "sharpe_ratio": -2.8093,
+          "avg_r": -0.1735
+        },
+        "GBPUSD": {
+          "trades": 426,
+          "win_rate": 0.4366,
+          "profit_factor": 0.7725,
+          "sharpe_ratio": -2.0528,
+          "avg_r": -0.1279
+        },
+        "USDJPY": {
+          "trades": 420,
+          "win_rate": 0.4214,
+          "profit_factor": 0.718,
+          "sharpe_ratio": -2.6223,
+          "avg_r": -0.1611
+        },
+        "NAS100": {
+          "trades": 151,
+          "win_rate": 0.4371,
+          "profit_factor": 0.7765,
+          "sharpe_ratio": -2.0135,
+          "avg_r": -0.1258
+        },
+        "US30": {
+          "trades": 159,
+          "win_rate": 0.3962,
+          "profit_factor": 0.6524,
+          "sharpe_ratio": -3.4132,
+          "avg_r": -0.2099
+        },
+        "US500": {
+          "trades": 150,
+          "win_rate": 0.4133,
+          "profit_factor": 0.7012,
+          "sharpe_ratio": -2.8316,
+          "avg_r": -0.1753
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "id": "MM-005",
+      "name": "RSI Divergence Reversal",
+      "type": "reversal",
+      "total_trades": 420,
+      "win_rate": 0.3952,
+      "profit_factor": 0.6466,
+      "sharpe_ratio": -3.4833,
+      "avg_r": -0.2137,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 78,
+          "win_rate": 0.2436,
+          "profit_factor": 0.322,
+          "sharpe_ratio": -9.4826,
+          "avg_r": -0.5128
+        },
+        "BTCUSD": {
+          "trades": 33,
+          "win_rate": 0.2424,
+          "profit_factor": 0.32,
+          "sharpe_ratio": -9.5412,
+          "avg_r": -0.5152
+        },
+        "XAUUSD": {
+          "trades": 55,
+          "win_rate": 0.4909,
+          "profit_factor": 0.9643,
+          "sharpe_ratio": -0.2887,
+          "avg_r": -0.0182
+        },
+        "XAGUSD": {
+          "trades": 44,
+          "win_rate": 0.5682,
+          "profit_factor": 1.2234,
+          "sharpe_ratio": 1.5833,
+          "avg_r": 0.0965
+        },
+        "EURUSD": {
+          "trades": 28,
+          "win_rate": 0.6786,
+          "profit_factor": 2.1111,
+          "sharpe_ratio": 6.0698,
+          "avg_r": 0.3571
+        },
+        "GBPUSD": {
+          "trades": 40,
+          "win_rate": 0.275,
+          "profit_factor": 0.3793,
+          "sharpe_ratio": -7.9992,
+          "avg_r": -0.45
+        },
+        "USDJPY": {
+          "trades": 64,
+          "win_rate": 0.4844,
+          "profit_factor": 0.9394,
+          "sharpe_ratio": -0.4963,
+          "avg_r": -0.0312
+        },
+        "NAS100": {
+          "trades": 18,
+          "win_rate": 0.8889,
+          "profit_factor": 8.0,
+          "sharpe_ratio": 19.6437,
+          "avg_r": 0.7778
+        },
+        "US30": {
+          "trades": 23,
+          "win_rate": 0.0435,
+          "profit_factor": 0.0455,
+          "sharpe_ratio": -35.5368,
+          "avg_r": -0.913
+        },
+        "US500": {
+          "trades": 37,
+          "win_rate": 0.2432,
+          "profit_factor": 0.3214,
+          "sharpe_ratio": -9.5,
+          "avg_r": -0.5135
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "id": "MM-018",
+      "name": "Ichimoku Cloud System",
+      "type": "hybrid",
+      "total_trades": 905,
+      "win_rate": 0.3878,
+      "profit_factor": 0.6308,
+      "sharpe_ratio": -3.6856,
+      "avg_r": -0.2256,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 118,
+          "win_rate": 0.3729,
+          "profit_factor": 0.5946,
+          "sharpe_ratio": -4.173,
+          "avg_r": -0.2542
+        },
+        "BTCUSD": {
+          "trades": 121,
+          "win_rate": 0.438,
+          "profit_factor": 0.775,
+          "sharpe_ratio": -2.0281,
+          "avg_r": -0.1265
+        },
+        "XAUUSD": {
+          "trades": 96,
+          "win_rate": 0.4688,
+          "profit_factor": 0.8669,
+          "sharpe_ratio": -1.1327,
+          "avg_r": -0.0707
+        },
+        "XAGUSD": {
+          "trades": 86,
+          "win_rate": 0.4419,
+          "profit_factor": 0.7693,
+          "sharpe_ratio": -2.0805,
+          "avg_r": -0.1288
+        },
+        "EURUSD": {
+          "trades": 110,
+          "win_rate": 0.4545,
+          "profit_factor": 0.8333,
+          "sharpe_ratio": -1.4491,
+          "avg_r": -0.0909
+        },
+        "GBPUSD": {
+          "trades": 122,
+          "win_rate": 0.2951,
+          "profit_factor": 0.4228,
+          "sharpe_ratio": -7.0219,
+          "avg_r": -0.4029
+        },
+        "USDJPY": {
+          "trades": 114,
+          "win_rate": 0.3509,
+          "profit_factor": 0.5418,
+          "sharpe_ratio": -4.9399,
+          "avg_r": -0.2967
+        },
+        "NAS100": {
+          "trades": 50,
+          "win_rate": 0.34,
+          "profit_factor": 0.5152,
+          "sharpe_ratio": -5.3618,
+          "avg_r": -0.32
+        },
+        "US30": {
+          "trades": 47,
+          "win_rate": 0.2979,
+          "profit_factor": 0.4242,
+          "sharpe_ratio": -7.0162,
+          "avg_r": -0.4043
+        },
+        "US500": {
+          "trades": 41,
+          "win_rate": 0.3415,
+          "profit_factor": 0.5185,
+          "sharpe_ratio": -5.3072,
+          "avg_r": -0.3171
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "id": "MM-008",
+      "name": "EMA Crossover Trend",
+      "type": "trend",
+      "total_trades": 866,
+      "win_rate": 0.3707,
+      "profit_factor": 0.585,
+      "sharpe_ratio": -4.3033,
+      "avg_r": -0.2612,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 124,
+          "win_rate": 0.3306,
+          "profit_factor": 0.4859,
+          "sharpe_ratio": -5.8502,
+          "avg_r": -0.3441
+        },
+        "BTCUSD": {
+          "trades": 110,
+          "win_rate": 0.3545,
+          "profit_factor": 0.5414,
+          "sharpe_ratio": -4.9364,
+          "avg_r": -0.296
+        },
+        "XAUUSD": {
+          "trades": 82,
+          "win_rate": 0.378,
+          "profit_factor": 0.6078,
+          "sharpe_ratio": -3.9924,
+          "avg_r": -0.2439
+        },
+        "XAGUSD": {
+          "trades": 93,
+          "win_rate": 0.3441,
+          "profit_factor": 0.5103,
+          "sharpe_ratio": -5.4167,
+          "avg_r": -0.3212
+        },
+        "EURUSD": {
+          "trades": 108,
+          "win_rate": 0.3981,
+          "profit_factor": 0.6615,
+          "sharpe_ratio": -3.303,
+          "avg_r": -0.2037
+        },
+        "GBPUSD": {
+          "trades": 123,
+          "win_rate": 0.3171,
+          "profit_factor": 0.4634,
+          "sharpe_ratio": -6.2569,
+          "avg_r": -0.3665
+        },
+        "USDJPY": {
+          "trades": 107,
+          "win_rate": 0.3364,
+          "profit_factor": 0.507,
+          "sharpe_ratio": -5.4949,
+          "avg_r": -0.3271
+        },
+        "NAS100": {
+          "trades": 45,
+          "win_rate": 0.5111,
+          "profit_factor": 1.0357,
+          "sharpe_ratio": 0.2784,
+          "avg_r": 0.0175
+        },
+        "US30": {
+          "trades": 37,
+          "win_rate": 0.4865,
+          "profit_factor": 0.9474,
+          "sharpe_ratio": -0.4292,
+          "avg_r": -0.027
+        },
+        "US500": {
+          "trades": 37,
+          "win_rate": 0.5135,
+          "profit_factor": 1.0662,
+          "sharpe_ratio": 0.508,
+          "avg_r": 0.0322
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "id": "MM-015",
+      "name": "MACD Histogram Shift",
+      "type": "momentum",
+      "total_trades": 2580,
+      "win_rate": 0.3643,
+      "profit_factor": 0.5692,
+      "sharpe_ratio": -4.5235,
+      "avg_r": -0.2734,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 325,
+          "win_rate": 0.3662,
+          "profit_factor": 0.568,
+          "sharpe_ratio": -4.5305,
+          "avg_r": -0.2726
+        },
+        "BTCUSD": {
+          "trades": 331,
+          "win_rate": 0.3656,
+          "profit_factor": 0.5705,
+          "sharpe_ratio": -4.5078,
+          "avg_r": -0.2725
+        },
+        "XAUUSD": {
+          "trades": 295,
+          "win_rate": 0.3627,
+          "profit_factor": 0.5653,
+          "sharpe_ratio": -4.5708,
+          "avg_r": -0.2748
+        },
+        "XAGUSD": {
+          "trades": 273,
+          "win_rate": 0.3663,
+          "profit_factor": 0.5742,
+          "sharpe_ratio": -4.4521,
+          "avg_r": -0.2699
+        },
+        "EURUSD": {
+          "trades": 321,
+          "win_rate": 0.3489,
+          "profit_factor": 0.537,
+          "sharpe_ratio": -5.0146,
+          "avg_r": -0.3015
+        },
+        "GBPUSD": {
+          "trades": 329,
+          "win_rate": 0.3526,
+          "profit_factor": 0.5419,
+          "sharpe_ratio": -4.9341,
+          "avg_r": -0.2966
+        },
+        "USDJPY": {
+          "trades": 301,
+          "win_rate": 0.3821,
+          "profit_factor": 0.6079,
+          "sharpe_ratio": -3.9818,
+          "avg_r": -0.2423
+        },
+        "NAS100": {
+          "trades": 126,
+          "win_rate": 0.3889,
+          "profit_factor": 0.6414,
+          "sharpe_ratio": -3.5512,
+          "avg_r": -0.2191
+        },
+        "US30": {
+          "trades": 147,
+          "win_rate": 0.3469,
+          "profit_factor": 0.5312,
+          "sharpe_ratio": -5.1046,
+          "avg_r": -0.3061
+        },
+        "US500": {
+          "trades": 132,
+          "win_rate": 0.3788,
+          "profit_factor": 0.6098,
+          "sharpe_ratio": -3.9667,
+          "avg_r": -0.2424
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "id": "MM-007",
+      "name": "ATR Breakout Expansion",
+      "type": "breakout",
+      "total_trades": 730,
+      "win_rate": 0.3575,
+      "profit_factor": 0.5508,
+      "sharpe_ratio": -4.7792,
+      "avg_r": -0.2868,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 106,
+          "win_rate": 0.434,
+          "profit_factor": 0.7501,
+          "sharpe_ratio": -2.2742,
+          "avg_r": -0.1415
+        },
+        "BTCUSD": {
+          "trades": 94,
+          "win_rate": 0.4255,
+          "profit_factor": 0.7263,
+          "sharpe_ratio": -2.5359,
+          "avg_r": -0.1572
+        },
+        "XAUUSD": {
+          "trades": 81,
+          "win_rate": 0.3704,
+          "profit_factor": 0.5783,
+          "sharpe_ratio": -4.3836,
+          "avg_r": -0.2655
+        },
+        "XAGUSD": {
+          "trades": 85,
+          "win_rate": 0.4,
+          "profit_factor": 0.6712,
+          "sharpe_ratio": -3.1665,
+          "avg_r": -0.193
+        },
+        "EURUSD": {
+          "trades": 75,
+          "win_rate": 0.44,
+          "profit_factor": 0.8158,
+          "sharpe_ratio": -1.6045,
+          "avg_r": -0.1008
+        },
+        "GBPUSD": {
+          "trades": 73,
+          "win_rate": 0.3151,
+          "profit_factor": 0.4391,
+          "sharpe_ratio": -6.6674,
+          "avg_r": -0.3842
+        },
+        "USDJPY": {
+          "trades": 85,
+          "win_rate": 0.2941,
+          "profit_factor": 0.4137,
+          "sharpe_ratio": -7.2032,
+          "avg_r": -0.4073
+        },
+        "NAS100": {
+          "trades": 44,
+          "win_rate": 0.25,
+          "profit_factor": 0.3205,
+          "sharpe_ratio": -9.5001,
+          "avg_r": -0.5096
+        },
+        "US30": {
+          "trades": 32,
+          "win_rate": 0.1875,
+          "profit_factor": 0.2308,
+          "sharpe_ratio": -12.7098,
+          "avg_r": -0.625
+        },
+        "US500": {
+          "trades": 55,
+          "win_rate": 0.2364,
+          "profit_factor": 0.3095,
+          "sharpe_ratio": -9.8508,
+          "avg_r": -0.5273
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "id": "MM-004",
+      "name": "Momentum Breakout",
+      "type": "breakout",
+      "total_trades": 3329,
+      "win_rate": 0.3436,
+      "profit_factor": 0.522,
+      "sharpe_ratio": -5.24,
+      "avg_r": -0.3132,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 387,
+          "win_rate": 0.3721,
+          "profit_factor": 0.5902,
+          "sharpe_ratio": -4.2242,
+          "avg_r": -0.257
+        },
+        "BTCUSD": {
+          "trades": 387,
+          "win_rate": 0.3643,
+          "profit_factor": 0.5714,
+          "sharpe_ratio": -4.493,
+          "avg_r": -0.2725
+        },
+        "XAUUSD": {
+          "trades": 292,
+          "win_rate": 0.3904,
+          "profit_factor": 0.6391,
+          "sharpe_ratio": -3.5711,
+          "avg_r": -0.2191
+        },
+        "XAGUSD": {
+          "trades": 285,
+          "win_rate": 0.3895,
+          "profit_factor": 0.6198,
+          "sharpe_ratio": -3.8078,
+          "avg_r": -0.2311
+        },
+        "EURUSD": {
+          "trades": 493,
+          "win_rate": 0.3002,
+          "profit_factor": 0.4279,
+          "sharpe_ratio": -6.9269,
+          "avg_r": -0.3992
+        },
+        "GBPUSD": {
+          "trades": 550,
+          "win_rate": 0.3236,
+          "profit_factor": 0.4786,
+          "sharpe_ratio": -5.9725,
+          "avg_r": -0.3526
+        },
+        "USDJPY": {
+          "trades": 548,
+          "win_rate": 0.3193,
+          "profit_factor": 0.4704,
+          "sharpe_ratio": -6.1207,
+          "avg_r": -0.3598
+        },
+        "NAS100": {
+          "trades": 143,
+          "win_rate": 0.3147,
+          "profit_factor": 0.4654,
+          "sharpe_ratio": -6.2154,
+          "avg_r": -0.3664
+        },
+        "US30": {
+          "trades": 111,
+          "win_rate": 0.3784,
+          "profit_factor": 0.6087,
+          "sharpe_ratio": -3.9809,
+          "avg_r": -0.2432
+        },
+        "US500": {
+          "trades": 133,
+          "win_rate": 0.3459,
+          "profit_factor": 0.5319,
+          "sharpe_ratio": -5.0932,
+          "avg_r": -0.3062
+        }
+      }
+    },
+    {
+      "rank": 11,
+      "id": "MM-010",
+      "name": "Volume Profile Momentum",
+      "type": "hybrid",
+      "total_trades": 6503,
+      "win_rate": 0.3411,
+      "profit_factor": 0.5171,
+      "sharpe_ratio": -5.3151,
+      "avg_r": -0.3168,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 624,
+          "win_rate": 0.3558,
+          "profit_factor": 0.5513,
+          "sharpe_ratio": -4.782,
+          "avg_r": -0.2874
+        },
+        "BTCUSD": {
+          "trades": 620,
+          "win_rate": 0.3629,
+          "profit_factor": 0.5694,
+          "sharpe_ratio": -4.5246,
+          "avg_r": -0.2744
+        },
+        "XAUUSD": {
+          "trades": 354,
+          "win_rate": 0.3757,
+          "profit_factor": 0.5958,
+          "sharpe_ratio": -4.1365,
+          "avg_r": -0.2506
+        },
+        "XAGUSD": {
+          "trades": 354,
+          "win_rate": 0.3305,
+          "profit_factor": 0.4822,
+          "sharpe_ratio": -5.8774,
+          "avg_r": -0.3445
+        },
+        "EURUSD": {
+          "trades": 1358,
+          "win_rate": 0.324,
+          "profit_factor": 0.4771,
+          "sharpe_ratio": -5.992,
+          "avg_r": -0.3521
+        },
+        "GBPUSD": {
+          "trades": 1437,
+          "win_rate": 0.3396,
+          "profit_factor": 0.5165,
+          "sharpe_ratio": -5.3301,
+          "avg_r": -0.3182
+        },
+        "USDJPY": {
+          "trades": 1399,
+          "win_rate": 0.3481,
+          "profit_factor": 0.5363,
+          "sharpe_ratio": -5.0127,
+          "avg_r": -0.3004
+        },
+        "NAS100": {
+          "trades": 126,
+          "win_rate": 0.3254,
+          "profit_factor": 0.4841,
+          "sharpe_ratio": -5.8741,
+          "avg_r": -0.348
+        },
+        "US30": {
+          "trades": 119,
+          "win_rate": 0.3025,
+          "profit_factor": 0.4375,
+          "sharpe_ratio": -6.7321,
+          "avg_r": -0.3889
+        },
+        "US500": {
+          "trades": 112,
+          "win_rate": 0.2589,
+          "profit_factor": 0.3476,
+          "sharpe_ratio": -8.7819,
+          "avg_r": -0.4835
+        }
+      }
+    },
+    {
+      "rank": 12,
+      "id": "MM-016",
+      "name": "Stochastic Extreme Reversal",
+      "type": "reversal",
+      "total_trades": 4935,
+      "win_rate": 0.3236,
+      "profit_factor": 0.4781,
+      "sharpe_ratio": -5.9848,
+      "avg_r": -0.3526,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 632,
+          "win_rate": 0.3402,
+          "profit_factor": 0.512,
+          "sharpe_ratio": -5.3909,
+          "avg_r": -0.3208
+        },
+        "BTCUSD": {
+          "trades": 625,
+          "win_rate": 0.3152,
+          "profit_factor": 0.4603,
+          "sharpe_ratio": -6.3143,
+          "avg_r": -0.3696
+        },
+        "XAUUSD": {
+          "trades": 516,
+          "win_rate": 0.2965,
+          "profit_factor": 0.4243,
+          "sharpe_ratio": -7.0037,
+          "avg_r": -0.4044
+        },
+        "XAGUSD": {
+          "trades": 529,
+          "win_rate": 0.3176,
+          "profit_factor": 0.4639,
+          "sharpe_ratio": -6.246,
+          "avg_r": -0.3659
+        },
+        "EURUSD": {
+          "trades": 629,
+          "win_rate": 0.3164,
+          "profit_factor": 0.4628,
+          "sharpe_ratio": -6.2679,
+          "avg_r": -0.3672
+        },
+        "GBPUSD": {
+          "trades": 613,
+          "win_rate": 0.3279,
+          "profit_factor": 0.4879,
+          "sharpe_ratio": -5.8198,
+          "avg_r": -0.3442
+        },
+        "USDJPY": {
+          "trades": 627,
+          "win_rate": 0.3445,
+          "profit_factor": 0.5259,
+          "sharpe_ratio": -5.1822,
+          "avg_r": -0.3096
+        },
+        "NAS100": {
+          "trades": 249,
+          "win_rate": 0.3333,
+          "profit_factor": 0.5,
+          "sharpe_ratio": -5.6125,
+          "avg_r": -0.3333
+        },
+        "US30": {
+          "trades": 256,
+          "win_rate": 0.3125,
+          "profit_factor": 0.4545,
+          "sharpe_ratio": -6.4216,
+          "avg_r": -0.375
+        },
+        "US500": {
+          "trades": 259,
+          "win_rate": 0.3282,
+          "profit_factor": 0.4885,
+          "sharpe_ratio": -5.8087,
+          "avg_r": -0.3436
+        }
+      }
+    },
+    {
+      "rank": 13,
+      "id": "MM-006",
+      "name": "Bollinger Bounce Mean Reversion",
+      "type": "mean_reversion",
+      "total_trades": 2279,
+      "win_rate": 0.3181,
+      "profit_factor": 0.468,
+      "sharpe_ratio": -6.1203,
+      "avg_r": -0.3616,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 342,
+          "win_rate": 0.2953,
+          "profit_factor": 0.4281,
+          "sharpe_ratio": -6.7857,
+          "avg_r": -0.4021
+        },
+        "BTCUSD": {
+          "trades": 309,
+          "win_rate": 0.3301,
+          "profit_factor": 0.4946,
+          "sharpe_ratio": -5.6712,
+          "avg_r": -0.3376
+        },
+        "XAUUSD": {
+          "trades": 301,
+          "win_rate": 0.2625,
+          "profit_factor": 0.3694,
+          "sharpe_ratio": -8.1778,
+          "avg_r": -0.4634
+        },
+        "XAGUSD": {
+          "trades": 258,
+          "win_rate": 0.2326,
+          "profit_factor": 0.3221,
+          "sharpe_ratio": -9.3647,
+          "avg_r": -0.5188
+        },
+        "EURUSD": {
+          "trades": 281,
+          "win_rate": 0.3594,
+          "profit_factor": 0.5615,
+          "sharpe_ratio": -4.626,
+          "avg_r": -0.2781
+        },
+        "GBPUSD": {
+          "trades": 225,
+          "win_rate": 0.4044,
+          "profit_factor": 0.6656,
+          "sharpe_ratio": -3.2448,
+          "avg_r": -0.1991
+        },
+        "USDJPY": {
+          "trades": 292,
+          "win_rate": 0.3562,
+          "profit_factor": 0.5311,
+          "sharpe_ratio": -5.0594,
+          "avg_r": -0.301
+        },
+        "NAS100": {
+          "trades": 87,
+          "win_rate": 0.2989,
+          "profit_factor": 0.4084,
+          "sharpe_ratio": -7.3112,
+          "avg_r": -0.4148
+        },
+        "US30": {
+          "trades": 100,
+          "win_rate": 0.33,
+          "profit_factor": 0.4925,
+          "sharpe_ratio": -5.7392,
+          "avg_r": -0.34
+        },
+        "US500": {
+          "trades": 84,
+          "win_rate": 0.3333,
+          "profit_factor": 0.5,
+          "sharpe_ratio": -5.6125,
+          "avg_r": -0.3333
+        }
+      }
+    },
+    {
+      "rank": 14,
+      "id": "MM-013",
+      "name": "Support/Resistance Bounce",
+      "type": "mean_reversion",
+      "total_trades": 1016,
+      "win_rate": 0.2854,
+      "profit_factor": 0.4014,
+      "sharpe_ratio": -7.4878,
+      "avg_r": -0.4256,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 117,
+          "win_rate": 0.265,
+          "profit_factor": 0.3684,
+          "sharpe_ratio": -8.2168,
+          "avg_r": -0.4543
+        },
+        "BTCUSD": {
+          "trades": 130,
+          "win_rate": 0.2615,
+          "profit_factor": 0.3542,
+          "sharpe_ratio": -8.6136,
+          "avg_r": -0.4769
+        },
+        "XAUUSD": {
+          "trades": 96,
+          "win_rate": 0.2604,
+          "profit_factor": 0.3521,
+          "sharpe_ratio": -8.6662,
+          "avg_r": -0.4792
+        },
+        "XAGUSD": {
+          "trades": 130,
+          "win_rate": 0.3231,
+          "profit_factor": 0.4773,
+          "sharpe_ratio": -6.0057,
+          "avg_r": -0.3538
+        },
+        "EURUSD": {
+          "trades": 125,
+          "win_rate": 0.296,
+          "profit_factor": 0.4247,
+          "sharpe_ratio": -6.982,
+          "avg_r": -0.401
+        },
+        "GBPUSD": {
+          "trades": 133,
+          "win_rate": 0.3158,
+          "profit_factor": 0.4615,
+          "sharpe_ratio": -6.291,
+          "avg_r": -0.3684
+        },
+        "USDJPY": {
+          "trades": 150,
+          "win_rate": 0.2133,
+          "profit_factor": 0.2731,
+          "sharpe_ratio": -10.9999,
+          "avg_r": -0.5677
+        },
+        "NAS100": {
+          "trades": 44,
+          "win_rate": 0.3182,
+          "profit_factor": 0.4667,
+          "sharpe_ratio": -6.1968,
+          "avg_r": -0.3636
+        },
+        "US30": {
+          "trades": 60,
+          "win_rate": 0.2167,
+          "profit_factor": 0.2766,
+          "sharpe_ratio": -10.9176,
+          "avg_r": -0.5667
+        },
+        "US500": {
+          "trades": 31,
+          "win_rate": 0.6452,
+          "profit_factor": 1.8182,
+          "sharpe_ratio": 4.8162,
+          "avg_r": 0.2903
+        }
+      }
+    },
+    {
+      "rank": 15,
+      "id": "MM-002",
+      "name": "VCE-A Volatility Compression Expansion",
+      "type": "breakout",
+      "total_trades": 97,
+      "win_rate": 0.2474,
+      "profit_factor": 0.3288,
+      "sharpe_ratio": -9.2918,
+      "avg_r": -0.5052,
+      "per_symbol": {
+        "ETHUSD": {
+          "trades": 30,
+          "win_rate": 0.2333,
+          "profit_factor": 0.3043,
+          "sharpe_ratio": -10.0087,
+          "avg_r": -0.5333
+        },
+        "BTCUSD": {
+          "trades": 27,
+          "win_rate": 0.2222,
+          "profit_factor": 0.2857,
+          "sharpe_ratio": -10.6066,
+          "avg_r": -0.5556
+        },
+        "XAUUSD": {
+          "trades": 5,
+          "win_rate": 0.4,
+          "profit_factor": 0.6667,
+          "sharpe_ratio": -3.2404,
+          "avg_r": -0.2
+        },
+        "XAGUSD": {
+          "trades": 8,
+          "win_rate": 0.0,
+          "profit_factor": 0.0,
+          "sharpe_ratio": 0,
+          "avg_r": -1.0
+        },
+        "EURUSD": {
+          "trades": 4,
+          "win_rate": 0.25,
+          "profit_factor": 0.3333,
+          "sharpe_ratio": -9.1652,
+          "avg_r": -0.5
+        },
+        "GBPUSD": {
+          "trades": 2,
+          "win_rate": 0.5,
+          "profit_factor": 1.0,
+          "sharpe_ratio": 0.0,
+          "avg_r": 0.0
+        },
+        "USDJPY": {
+          "trades": 13,
+          "win_rate": 0.3846,
+          "profit_factor": 0.625,
+          "sharpe_ratio": -3.765,
+          "avg_r": -0.2308
+        },
+        "NAS100": {
+          "trades": 5,
+          "win_rate": 0.0,
+          "profit_factor": 0.0,
+          "sharpe_ratio": 0,
+          "avg_r": -1.0
+        },
+        "US30": {
+          "trades": 3,
+          "win_rate": 0.6667,
+          "profit_factor": 2.0,
+          "sharpe_ratio": 5.6125,
+          "avg_r": 0.3333
+        }
+      }
+    }
+  ],
+  "best_pairs": [
+    {
+      "strategy": "MM-005",
+      "symbol": "NAS100",
+      "trades": 18,
+      "win_rate": 0.8889,
+      "profit_factor": 8.0,
+      "sharpe_ratio": 19.6437,
+      "avg_r": 0.7778
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "NAS100",
+      "trades": 18,
+      "win_rate": 0.7222,
+      "profit_factor": 2.6,
+      "sharpe_ratio": 7.876,
+      "avg_r": 0.4444
+    },
+    {
+      "strategy": "MM-005",
+      "symbol": "EURUSD",
+      "trades": 28,
+      "win_rate": 0.6786,
+      "profit_factor": 2.1111,
+      "sharpe_ratio": 6.0698,
+      "avg_r": 0.3571
+    },
+    {
+      "strategy": "MM-002",
+      "symbol": "US30",
+      "trades": 3,
+      "win_rate": 0.6667,
+      "profit_factor": 2.0,
+      "sharpe_ratio": 5.6125,
+      "avg_r": 0.3333
+    },
+    {
+      "strategy": "MM-013",
+      "symbol": "US500",
+      "trades": 31,
+      "win_rate": 0.6452,
+      "profit_factor": 1.8182,
+      "sharpe_ratio": 4.8162,
+      "avg_r": 0.2903
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "ETHUSD",
+      "trades": 73,
+      "win_rate": 0.6164,
+      "profit_factor": 1.614,
+      "sharpe_ratio": 3.8253,
+      "avg_r": 0.232
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "NAS100",
+      "trades": 45,
+      "win_rate": 0.6,
+      "profit_factor": 1.5,
+      "sharpe_ratio": 3.2404,
+      "avg_r": 0.2
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "US30",
+      "trades": 26,
+      "win_rate": 0.5769,
+      "profit_factor": 1.3636,
+      "sharpe_ratio": 2.4717,
+      "avg_r": 0.1538
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "XAGUSD",
+      "trades": 79,
+      "win_rate": 0.5696,
+      "profit_factor": 1.3438,
+      "sharpe_ratio": 2.3359,
+      "avg_r": 0.1439
+    },
+    {
+      "strategy": "MM-005",
+      "symbol": "XAGUSD",
+      "trades": 44,
+      "win_rate": 0.5682,
+      "profit_factor": 1.2234,
+      "sharpe_ratio": 1.5833,
+      "avg_r": 0.0965
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "US30",
+      "trades": 42,
+      "win_rate": 0.5476,
+      "profit_factor": 1.2105,
+      "sharpe_ratio": 1.5188,
+      "avg_r": 0.0952
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "GBPUSD",
+      "trades": 97,
+      "win_rate": 0.5464,
+      "profit_factor": 1.2045,
+      "sharpe_ratio": 1.4793,
+      "avg_r": 0.0928
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "US500",
+      "trades": 25,
+      "win_rate": 0.52,
+      "profit_factor": 1.0833,
+      "sharpe_ratio": 0.6355,
+      "avg_r": 0.04
+    },
+    {
+      "strategy": "MM-008",
+      "symbol": "US500",
+      "trades": 37,
+      "win_rate": 0.5135,
+      "profit_factor": 1.0662,
+      "sharpe_ratio": 0.508,
+      "avg_r": 0.0322
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "EURUSD",
+      "trades": 95,
+      "win_rate": 0.5158,
+      "profit_factor": 1.0652,
+      "sharpe_ratio": 0.5016,
+      "avg_r": 0.0316
+    },
+    {
+      "strategy": "MM-008",
+      "symbol": "NAS100",
+      "trades": 45,
+      "win_rate": 0.5111,
+      "profit_factor": 1.0357,
+      "sharpe_ratio": 0.2784,
+      "avg_r": 0.0175
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "GBPUSD",
+      "trades": 71,
+      "win_rate": 0.507,
+      "profit_factor": 1.0286,
+      "sharpe_ratio": 0.2236,
+      "avg_r": 0.0141
+    },
+    {
+      "strategy": "MM-002",
+      "symbol": "XAGUSD",
+      "trades": 8,
+      "win_rate": 0.0,
+      "profit_factor": 0.0,
+      "sharpe_ratio": 0,
+      "avg_r": -1.0
+    },
+    {
+      "strategy": "MM-002",
+      "symbol": "GBPUSD",
+      "trades": 2,
+      "win_rate": 0.5,
+      "profit_factor": 1.0,
+      "sharpe_ratio": 0.0,
+      "avg_r": 0.0
+    },
+    {
+      "strategy": "MM-002",
+      "symbol": "NAS100",
+      "trades": 5,
+      "win_rate": 0.0,
+      "profit_factor": 0.0,
+      "sharpe_ratio": 0,
+      "avg_r": -1.0
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "ETHUSD",
+      "trades": 1,
+      "win_rate": 0.0,
+      "profit_factor": 0.0,
+      "sharpe_ratio": 0,
+      "avg_r": -1.0
+    },
+    {
+      "strategy": "MM-012",
+      "symbol": "BTCUSD",
+      "trades": 1,
+      "win_rate": 0.0,
+      "profit_factor": 0.0,
+      "sharpe_ratio": 0,
+      "avg_r": -1.0
+    },
+    {
+      "strategy": "MM-005",
+      "symbol": "XAUUSD",
+      "trades": 55,
+      "win_rate": 0.4909,
+      "profit_factor": 0.9643,
+      "sharpe_ratio": -0.2887,
+      "avg_r": -0.0182
+    },
+    {
+      "strategy": "MM-008",
+      "symbol": "US30",
+      "trades": 37,
+      "win_rate": 0.4865,
+      "profit_factor": 0.9474,
+      "sharpe_ratio": -0.4292,
+      "avg_r": -0.027
+    },
+    {
+      "strategy": "MM-009",
+      "symbol": "XAUUSD",
+      "trades": 70,
+      "win_rate": 0.4857,
+      "profit_factor": 0.9444,
+      "sharpe_ratio": -0.4537,
+      "avg_r": -0.0286
+    }
+  ],
+  "growth_simulation": {
+    "risk_3pct": {
+      "final_balance": 13.37,
+      "return_pct": -10.8,
+      "max_dd": 50.73,
+      "target_hit": "False",
+      "trades_taken": 705
+    },
+    "risk_5pct": {
+      "final_balance": 15.96,
+      "return_pct": 6.4,
+      "max_dd": 50.25,
+      "target_hit": "False",
+      "trades_taken": 144
+    },
+    "risk_8pct": {
+      "final_balance": 23.04,
+      "return_pct": 53.6,
+      "max_dd": 50.62,
+      "target_hit": "False",
+      "trades_taken": 91
+    },
+    "risk_10pct": {
+      "final_balance": 27.12,
+      "return_pct": 80.8,
+      "max_dd": 53.12,
+      "target_hit": "False",
+      "trades_taken": 82
+    },
+    "risk_12pct": {
+      "final_balance": 31.49,
+      "return_pct": 109.9,
+      "max_dd": 54.89,
+      "target_hit": "False",
+      "trades_taken": 81
+    },
+    "risk_15pct": {
+      "final_balance": 43.84,
+      "return_pct": 192.3,
+      "max_dd": 50.12,
+      "target_hit": "False",
+      "trades_taken": 79
+    }
+  },
+  "best_individual": {
+    "MM-009_risk5": {
+      "strategy": "MM-009",
+      "risk_pct": 5,
+      "final_balance": 15.96,
+      "return_pct": 6.4,
+      "max_dd": 50.25,
+      "target_hit": "False",
+      "trades_taken": 144
+    },
+    "MM-009_risk8": {
+      "strategy": "MM-009",
+      "risk_pct": 8,
+      "final_balance": 23.04,
+      "return_pct": 53.6,
+      "max_dd": 50.62,
+      "target_hit": "False",
+      "trades_taken": 91
+    },
+    "MM-009_risk10": {
+      "strategy": "MM-009",
+      "risk_pct": 10,
+      "final_balance": 27.12,
+      "return_pct": 80.8,
+      "max_dd": 53.12,
+      "target_hit": "False",
+      "trades_taken": 82
+    },
+    "MM-009_risk15": {
+      "strategy": "MM-009",
+      "risk_pct": 15,
+      "final_balance": 43.84,
+      "return_pct": 192.3,
+      "max_dd": 50.12,
+      "target_hit": "False",
+      "trades_taken": 79
+    },
+    "MM-012_risk5": {
+      "strategy": "MM-012",
+      "risk_pct": 5,
+      "final_balance": 9.89,
+      "return_pct": -34.1,
+      "max_dd": 52.2,
+      "target_hit": false,
+      "trades_taken": 53
+    },
+    "MM-012_risk8": {
+      "strategy": "MM-012",
+      "risk_pct": 8,
+      "final_balance": 11.24,
+      "return_pct": -25.1,
+      "max_dd": 53.98,
+      "target_hit": false,
+      "trades_taken": 40
+    },
+    "MM-012_risk10": {
+      "strategy": "MM-012",
+      "risk_pct": 10,
+      "final_balance": 12.39,
+      "return_pct": -17.4,
+      "max_dd": 54.05,
+      "target_hit": false,
+      "trades_taken": 38
+    },
+    "MM-012_risk15": {
+      "strategy": "MM-012",
+      "risk_pct": 15,
+      "final_balance": 16.59,
+      "return_pct": 10.6,
+      "max_dd": 50.12,
+      "target_hit": false,
+      "trades_taken": 31
+    },
+    "MM-014_risk5": {
+      "strategy": "MM-014",
+      "risk_pct": 5,
+      "final_balance": 11.96,
+      "return_pct": -20.2,
+      "max_dd": 50.46,
+      "target_hit": "False",
+      "trades_taken": 29
+    },
+    "MM-014_risk8": {
+      "strategy": "MM-014",
+      "risk_pct": 8,
+      "final_balance": 15.33,
+      "return_pct": 2.2,
+      "max_dd": 51.55,
+      "target_hit": "False",
+      "trades_taken": 24
+    },
+    "MM-014_risk10": {
+      "strategy": "MM-014",
+      "risk_pct": 10,
+      "final_balance": 18.01,
+      "return_pct": 20.1,
+      "max_dd": 52.17,
+      "target_hit": "False",
+      "trades_taken": 22
+    },
+    "MM-014_risk15": {
+      "strategy": "MM-014",
+      "risk_pct": 15,
+      "final_balance": 25.26,
+      "return_pct": 68.4,
+      "max_dd": 55.63,
+      "target_hit": "False",
+      "trades_taken": 20
+    },
+    "MM-017_risk5": {
+      "strategy": "MM-017",
+      "risk_pct": 5,
+      "final_balance": 7.16,
+      "return_pct": -52.3,
+      "max_dd": 52.26,
+      "target_hit": "False",
+      "trades_taken": 40
+    },
+    "MM-017_risk8": {
+      "strategy": "MM-017",
+      "risk_pct": 8,
+      "final_balance": 7.46,
+      "return_pct": -50.3,
+      "max_dd": 50.3,
+      "target_hit": false,
+      "trades_taken": 18
+    },
+    "MM-017_risk10": {
+      "strategy": "MM-017",
+      "risk_pct": 10,
+      "final_balance": 7.17,
+      "return_pct": -52.2,
+      "max_dd": 52.17,
+      "target_hit": false,
+      "trades_taken": 7
+    },
+    "MM-017_risk15": {
+      "strategy": "MM-017",
+      "risk_pct": 15,
+      "final_balance": 6.66,
+      "return_pct": -55.6,
+      "max_dd": 55.63,
+      "target_hit": false,
+      "trades_taken": 5
+    },
+    "MM-005_risk5": {
+      "strategy": "MM-005",
+      "risk_pct": 5,
+      "final_balance": 7.13,
+      "return_pct": -52.4,
+      "max_dd": 52.44,
+      "target_hit": false,
+      "trades_taken": 34
+    },
+    "MM-005_risk8": {
+      "strategy": "MM-005",
+      "risk_pct": 8,
+      "final_balance": 7.08,
+      "return_pct": -52.8,
+      "max_dd": 52.78,
+      "target_hit": false,
+      "trades_taken": 9
+    },
+    "MM-005_risk10": {
+      "strategy": "MM-005",
+      "risk_pct": 10,
+      "final_balance": 7.17,
+      "return_pct": -52.2,
+      "max_dd": 52.17,
+      "target_hit": false,
+      "trades_taken": 7
+    },
+    "MM-005_risk15": {
+      "strategy": "MM-005",
+      "risk_pct": 15,
+      "final_balance": 6.66,
+      "return_pct": -55.6,
+      "max_dd": 55.63,
+      "target_hit": false,
+      "trades_taken": 5
+    },
+    "MM-018_risk5": {
+      "strategy": "MM-018",
+      "risk_pct": 5,
+      "final_balance": 7.65,
+      "return_pct": -49.0,
+      "max_dd": 52.2,
+      "target_hit": false,
+      "trades_taken": 58
+    },
+    "MM-018_risk8": {
+      "strategy": "MM-018",
+      "risk_pct": 8,
+      "final_balance": 8.0,
+      "return_pct": -46.7,
+      "max_dd": 50.3,
+      "target_hit": false,
+      "trades_taken": 46
+    },
+    "MM-018_risk10": {
+      "strategy": "MM-018",
+      "risk_pct": 10,
+      "final_balance": 7.39,
+      "return_pct": -50.7,
+      "max_dd": 53.59,
+      "target_hit": false,
+      "trades_taken": 41
+    },
+    "MM-018_risk15": {
+      "strategy": "MM-018",
+      "risk_pct": 15,
+      "final_balance": 6.66,
+      "return_pct": -55.6,
+      "max_dd": 55.63,
+      "target_hit": false,
+      "trades_taken": 5
+    },
+    "MM-008_risk5": {
+      "strategy": "MM-008",
+      "risk_pct": 5,
+      "final_balance": 7.35,
+      "return_pct": -51.0,
+      "max_dd": 51.0,
+      "target_hit": "False",
+      "trades_taken": 41
+    },
+    "MM-008_risk8": {
+      "strategy": "MM-008",
+      "risk_pct": 8,
+      "final_balance": 7.22,
+      "return_pct": -51.9,
+      "max_dd": 51.87,
+      "target_hit": false,
+      "trades_taken": 28
+    },
+    "MM-008_risk10": {
+      "strategy": "MM-008",
+      "risk_pct": 10,
+      "final_balance": 6.82,
+      "return_pct": -54.5,
+      "max_dd": 54.51,
+      "target_hit": false,
+      "trades_taken": 17
+    },
+    "MM-008_risk15": {
+      "strategy": "MM-008",
+      "risk_pct": 15,
+      "final_balance": 7.48,
+      "return_pct": -50.1,
+      "max_dd": 50.12,
+      "target_hit": false,
+      "trades_taken": 8
+    },
+    "MM-015_risk5": {
+      "strategy": "MM-015",
+      "risk_pct": 5,
+      "final_balance": 7.16,
+      "return_pct": -52.3,
+      "max_dd": 52.28,
+      "target_hit": "False",
+      "trades_taken": 29
+    },
+    "MM-015_risk8": {
+      "strategy": "MM-015",
+      "risk_pct": 8,
+      "final_balance": 6.9,
+      "return_pct": -54.0,
+      "max_dd": 53.98,
+      "target_hit": false,
+      "trades_taken": 17
+    },
+    "MM-015_risk10": {
+      "strategy": "MM-015",
+      "risk_pct": 10,
+      "final_balance": 6.96,
+      "return_pct": -53.6,
+      "max_dd": 53.59,
+      "target_hit": false,
+      "trades_taken": 13
+    },
+    "MM-015_risk15": {
+      "strategy": "MM-015",
+      "risk_pct": 15,
+      "final_balance": 7.48,
+      "return_pct": -50.1,
+      "max_dd": 50.12,
+      "target_hit": false,
+      "trades_taken": 8
+    }
+  },
+  "monte_carlo": {
+    "risk_5pct": {
+      "prob_target": 0.0262,
+      "mean_final": 9.06,
+      "median_final": 6.55,
+      "p5_final": 6.55,
+      "p95_final": 6.55,
+      "mean_dd": 86.86,
+      "prob_ruin": 0.0
+    },
+    "risk_8pct": {
+      "prob_target": 0.085,
+      "mean_final": 9.73,
+      "median_final": 1.02,
+      "p5_final": 1.02,
+      "p95_final": 102.55,
+      "mean_dd": 95.0,
+      "prob_ruin": 0.0
+    },
+    "risk_10pct": {
+      "prob_target": 0.1184,
+      "mean_final": 12.51,
+      "median_final": 0.17,
+      "p5_final": 0.17,
+      "p95_final": 104.91,
+      "mean_dd": 95.29,
+      "prob_ruin": 0.0
+    }
+  }
+}
