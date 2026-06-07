@@ -1,153 +1,244 @@
-# MarketMate
+# MarketMate — Gate-Based SMC Trading Signal Bot
 
-**Institutional-grade algorithmic trading research platform built on Smart Money Concepts.**
+A production-ready, modular trading signal bot using Smart Money Concepts (SMC).
+**Signal quality over quantity.** Every trade passes 7 strict sequential gates.
+
+---
 
 ## Architecture
 
 ```
-MarketMate
-├── Production/           ← Deployed or paper-trading strategies
-│   ├── smc_8gate/       ← 8-Gate SMC Pipeline (PF 2.65, WR 63.2%)
-│   ├── mm002_mgf/       ← Monday Gap Fade
-│   ├── mm009_lsqr/      ← Liquidity Sweep Quick Reversal
-│   └── mm012_gpfl/      ← Gap Fill Weekend
-│
-├── Research/             ← Under validation, not yet production
-│   ├── liquidity/       ← OB Retest, FVG Fill, MSS Entry, Session Raid
-│   ├── session/         ← London Breakout, NY Reversal
-│   ├── volatility/      ← ATR Compression Breakout, RSI Divergence
-│   └── gap/             ← Monday Gap Fade, Gap Fill Weekend (cross-listed)
-│
-├── Risk Engine/          ← Portfolio governor (NOT alpha generators)
-│   └── risk_manager.py  ← DCB + PWP + TMG + CLP + CCE + ECB
-│
-├── Graveyard/            ← Dead strategies with documented reasons
-│   └── graveyard.json   ← MM-002 through MM-025 rejection records
-│
-├── Core/                 ← Shared infrastructure
-│   ├── base/            ← Strategy base class, config, events, logger
-│   ├── engine/          ← Backtest engine, strategy registry
-│   ├── data/            ← Market data providers (Binance, yfinance, etc.)
-│   ├── execution/       ← Position sizing, risk calculation
-│   ├── delivery/        ← Telegram signal delivery
-│   └── db/              ← MongoDB persistence (optional)
-│
-├── Validation/           ← Adversarial testing & deep validation
-├── Regime/               ← Market regime detection engine
-├── Paper Trade/          ← 30/60/90 day forward testing framework
-└── Backtest/             ← Historical results and cached data
+marketmate/
+├── main.py                    # Entry point, scan loop
+├── config/
+│   └── settings.py            # All config (env-driven)
+├── data/
+│   ├── market_data.py         # Multi-source OHLCV (Binance → Twelve Data → AV)
+│   └── validators.py          # Data integrity checks
+├── strategy/
+│   ├── gates.py               # Gate orchestrator (runs all gates)
+│   ├── htf_bias.py            # Gate 3: H4+Daily EMA200 + structure
+│   ├── liquidity.py           # Gate 4: Swing sweep detection
+│   ├── entry_zones.py         # Gate 5: Order Block / FVG
+│   └── ltf_confirm.py         # Gate 6: M5/M15 BOS or CHoCH
+├── risk/
+│   └── manager.py             # ATR-SL, position sizing, RR validation
+├── signals/
+│   ├── builder.py             # Signal object construction
+│   └── deduplicator.py        # Prevents duplicate signals
+├── delivery/
+│   └── telegram_bot.py        # Telegram formatted messages
+├── lifecycle/
+│   └── trade_manager.py       # TP/SL monitoring, BE logic
+├── analytics/
+│   └── tracker.py             # Win rate, RR, P&L tracking
+├── db/
+│   └── database.py            # SQLite async (aiosqlite)
+├── utils/
+│   ├── logger.py              # Structured logging (structlog)
+│   └── queue_manager.py       # Async event queue
+├── tests/
+│   └── test_strategy.py       # Unit tests (no API calls)
+└── deploy/
+    ├── Dockerfile
+    ├── docker-compose.yml
+    ├── railway.toml            # Railway.app free tier
+    ├── render.yaml             # Render.com free tier
+    └── marketmate.service      # Systemd (VPS)
 ```
 
-## Strategy Status
+---
 
-| Strategy | ID | Status | PF | WR | Instruments | Notes |
-|----------|----|--------|----|----|-------------|-------|
-| SMC 8-Gate | SMC_8G | **PAPER TRADE** | 3.65 | 67% | All | Core system, PF 2.65 on V4 |
-| Monday Gap Fade | MM-002 | **FAILED VALIDATION** | 0.65 | 56% | All | 12yr daily = slow bleed; regime-conditional only |
-| Liquidity Sweep | MM-009 | **INSTRUMENT-LOCKED** | 0.84 | 46% | NAS100, ETHUSD, XAGUSD, US30 | Better as Gate 5 filter |
-| Gap Fill Weekend | MM-012 | **MARGINAL** | 1.23 | 55% | NAS100, US30, GBPUSD | Same alpha as MM-002 |
-| RSI Divergence | MM-005 | **INSUFFICIENT SAMPLE** | 2.0 | 67% | EURUSD, XAGUSD | Only 6 trades — unvalidated |
-| Order Block Retest | MM-019 | **REJECT** | 0.54 | 35% | All | Pipeline filter, not standalone |
-| FVG Fill | MM-020 | **REJECT** | 0.53 | 35% | All | Pipeline filter, not standalone |
-| MSS Entry | MM-021 | **REJECT** | 0.57 | 27% | All | Pipeline filter, not standalone |
-| Session Raid | MM-022 | **REJECT** | 0.00 | 0% | All | Generated zero signals |
-| London Breakout | MM-023 | **REJECT** | 0.70 | 41% | All | Arbed away |
-| NY Reversal | MM-024 | **REJECT** | 0.11 | 10% | All | Catastrophic |
-| ATR Compression | MM-025 | **REJECT** | 0.45 | 31% | All | Compression ≠ expansion |
-
-## The 8-Gate SMC Pipeline
+## Gate Flow
 
 ```
-G1  Session Filter          (pure time check — zero I/O)
-G2  Daily Limit + Drawdown  (in-memory or DB read)
-G3  News Filter             (cached HTTP — 1 request/hour)
-G4  HTF Bias                (H4 + Daily OHLCV)
-G5  Liquidity Sweep         (uses H4 data already fetched)
-G6  Entry Zone              (Order Block or FVG)
-G7  LTF Confirmation        (M15 + M5 OHLCV)
-G8  RR Validation           (pure math, min 1.5R)
+PAIR SCAN
+   │
+   ▼
+[G1] Session?          → London (07:00–12:00 UTC) or NY (12:00–17:00 UTC)
+   │
+   ▼
+[G2] Daily limit?      → Max 5 trades/day | Max 3 consecutive losses
+   │
+   ▼
+[G3] HTF Bias?         → Price above/below EMA200 on BOTH H4 + Daily
+                         + confirmed market structure (HH+HL or LH+LL)
+   │
+   ▼
+[G4] Liquidity Sweep?  → Wick beyond swing high/low, ideally close back inside
+   │
+   ▼
+[G5] Entry Zone?       → Order Block (last opposing candle before displacement)
+                         OR Fair Value Gap (candle imbalance, min size enforced)
+   │
+   ▼
+[G6] LTF Confirm?      → BOS or CHoCH on M15 or M5
+   │
+   ▼
+[G7] RR Valid?         → Minimum 1:1.5 (configurable)
+   │
+   ▼
+ SIGNAL ISSUED
 ```
 
-**Gate Philosophy**: Fail-fast, cheapest first. If G1 fails, no data is fetched.
+---
 
-## Risk Engine
+## Example Signal Output
 
-The risk engine is a **portfolio governor**, not an alpha generator. It runs BEFORE any signal is executed:
+```
+📈 BUY — BTCUSDT
+🔥 Confidence: HIGH
 
-| Module | ID | Function |
-|--------|----|----------|
-| Drawdown Circuit Breaker | DCB | Halts at -3% daily, -7% weekly, -15% monthly |
-| Pre-Weekend Protocol | PWP | Blocks Thursday 20:00+, Friday 18:00+, Sunday pre-21:00 |
-| Thin Market Guard | TMG | Suspends if spread > 2× median, ATR < 30% avg, blocked hours |
-| Consecutive Loss Protocol | CLP | 2-loss strategy cooldown, 3-loss size reduction, 5-loss halt |
-| Correlation Cap | CCE | Blocks if correlation > 0.7, max 2 open positions |
-| Equity Curve Brake | ECB | Half size below SMA, halt if 20% below SMA |
+📊 Entry Zone: `49,900.00` – `50,100.00`
+🛑 Stop Loss:  `49,350.00`
+• TP1:  `50,650.00` (1:1)
+• TP2:  `51,200.00` (1:2)
+• TP3:  `52,400.00` (liquidity)
 
-## Regime Detection
+⚖️ Risk/Reward: `1:2.0`
+📐 Size:  `0.02` units
+🕐 TF:   H4 | M15 CHoCH
+🎯 Zone:  Order Block
 
-Classifies markets into regimes that determine which strategies should be active:
+🆔 `A3F8B1` | 2024-01-15 09:32 UTC
+```
 
-- **TRENDING** — Strong directional move (gap fades die here)
-- **RANGING** — Mean-reverting (gap fades survive here)
-- **HIGH_VOL** — Elevated volatility (wider stops needed)
-- **LOW_VOL** — Compressed volatility (tighter stops possible)
-- **RISK_ON** — Equities/crypto rising, safe havens falling
-- **RISK_OFF** — Flight to safety
+---
 
-**Key insight**: MM-002 works ONLY in RANGING/LOW_VOL (PF 3.29 on EURUSD ranging). A mediocre strategy becomes excellent when deployed only in its favorable regime.
+## Setup Guide
 
-## Paper Trading Framework
-
-30/60/90 day forward testing with strict rules:
-1. **NO parameter changes** during the test period
-2. Every modification **resets the clock**
-3. Track every signal, every block, every fill
-4. Deployment checklist: 30-day positive, 60-day positive, 90-day positive, PF > 1.1, no parameter changes
-
-## Lessons Learned
-
-1. **Indicator-based strategies consistently fail** — RSI, MACD, Bollinger, Stochastic, Ichimoku all failed across all instruments
-2. **SMC is the only validated edge** — and only when all 8 gates are combined. Individual SMC components fail as standalones
-3. **Session strategies are arbed away** — London Breakout, NY Reversal are well-known and no longer work
-4. **Volatility compression ≠ expansion** — Compression often leads to more compression
-5. **Gap fades are regime-dependent** — They work in ranging/low-vol and fail in trending/high-vol
-6. **PF > 2.0 with < 30 trades is unvalidated noise** — Always check sample size
-7. **H4 vs daily data can turn a "profitable" strategy into a loser** — Always validate on the longest available data window
-8. **Strategies trading the same phenomenon share failure modes** — MM-002 and MM-012 have low correlation (0.06) but both die in trending markets
-
-## Installation
+### 1. Clone & Install
 
 ```bash
-git clone https://github.com/<username>/MarketMate.git
-cd MarketMate
-python3 -m venv venv
+git clone https://github.com/yourname/marketmate.git
+cd marketmate
+python -m venv venv
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 2. Configure Environment
+
+```bash
+cp .env.example .env
+nano .env                         # Fill in all values
+```
+
+**Minimum required values:**
+```
+TELEGRAM_BOT_TOKEN=...
+TELEGRAM_CHAT_ID=...
+BINANCE_API_KEY=...               # or leave blank for public endpoints
+PAIRS=BTCUSDT,ETHUSDT
+```
+
+### 3. Get a Telegram Bot
+
+1. Open Telegram → search `@BotFather`
+2. Send `/newbot` → follow prompts
+3. Copy the token → `TELEGRAM_BOT_TOKEN`
+4. Send a message to your bot, then visit:
+   `https://api.telegram.org/bot<TOKEN>/getUpdates`
+5. Copy `chat.id` → `TELEGRAM_CHAT_ID`
+
+### 4. Get Free API Keys
+
+| API | Free Tier | Link |
+|-----|-----------|------|
+| Binance | Public OHLCV (no key needed for basic) | binance.com |
+| Twelve Data | 800 req/day | twelvedata.com |
+| Alpha Vantage | 25 req/day | alphavantage.co |
+
+### 5. Run Locally
+
+```bash
+python main.py
+```
+
+### 6. Run Tests
+
+```bash
+python -m pytest tests/ -v
+```
+
+---
+
+## Deployment Options
+
+### Option A: Docker (recommended)
+
+```bash
+# Build image
+docker build -f deploy/Dockerfile -t marketmate .
+
+# Run with auto-restart
+docker compose -f deploy/docker-compose.yml up -d
+
+# View logs
+docker compose -f deploy/docker-compose.yml logs -f
+```
+
+### Option B: Railway.app (free tier)
+
+1. Push repo to GitHub
+2. Connect repo at [railway.app](https://railway.app)
+3. Add environment variables in Railway dashboard
+4. Railway reads `deploy/railway.toml` automatically
+5. Deploy → bot runs 24/7 free
+
+### Option C: Render.com (free tier)
+
+1. Push repo to GitHub
+2. Create a new **Background Worker** at [render.com](https://render.com)
+3. Point to `render.yaml`
+4. Set secret env vars in Render dashboard
+5. Deploy
+
+### Option D: Linux VPS (systemd)
+
+```bash
+# Copy files to VPS
+scp -r . user@your-vps:/opt/marketmate
+
+# On VPS:
+cd /opt/marketmate
+python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Configure environment
-cp .env.example .env
-# Edit .env with your Telegram bot token and chat ID
+# Install service
+sudo cp deploy/marketmate.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable marketmate
+sudo systemctl start marketmate
+
+# Check status
+sudo systemctl status marketmate
+sudo journalctl -u marketmate -f
 ```
 
-## Running the Signal Engine
+---
 
-```bash
-python -m core.main
-```
+## Configuration Reference
 
-## Running Backtests
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PAIRS` | `BTCUSDT,ETHUSDT` | Pairs to scan (comma-separated) |
+| `MAX_TRADES_PER_DAY` | `5` | Daily trade ceiling |
+| `MIN_RR` | `1.5` | Minimum risk-reward ratio |
+| `RISK_PER_TRADE_PCT` | `1.0` | % of account risked per trade |
+| `ACCOUNT_SIZE` | `10000` | Account size in USD |
+| `MAX_CONSECUTIVE_LOSSES` | `3` | Drawdown protection — stops bot after N losses |
+| `LONDON_OPEN` | `07:00` | UTC session times |
+| `NY_CLOSE` | `17:00` | UTC session times |
+| `DEBUG` | `false` | Enable verbose logging |
 
-```bash
-# Fast adversarial validation
-python -m validation.fast_validation
+---
 
-# Deep validation with 12-year data
-python -m validation.deep_validate
+## Risk Disclaimer
 
-# Regime detection analysis
-python -m regime.regime_detector
-```
-
-## License
-
-Proprietary — All rights reserved.
+This software is for **educational purposes only**.
+It does not constitute financial advice.
+Trading involves substantial risk of loss.
+Always test thoroughly on paper before live use.
+Past performance of any strategy does not guarantee future results.

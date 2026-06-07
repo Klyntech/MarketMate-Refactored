@@ -1,0 +1,1008 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MarketMate API",
+    "version": "2.1.0",
+    "description": "The MarketMate API provides real-time and historical market intelligence for cryptocurrency and forex markets. Access market regime analysis, trading signals, liquidity maps, and historical data to power your trading applications, dashboards, and automated strategies.\n\n## Authentication\nAll API endpoints require a valid API key passed via the `Authorization` header as a Bearer token. You can generate and manage API keys from your MarketMate dashboard.\n\n## Rate Limits\n- **Free tier**: 60 requests/minute\n- **Pro tier**: 300 requests/minute\n- **Enterprise tier**: 1,000 requests/minute\n\nRate limit headers are included in every response: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.\n\n## WebSocket Support\nReal-time data is also available via WebSocket at `wss://marketmate-website.onrender.com/ws`. See the event schemas documentation for WebSocket event formats.\n\n## SDKs & Tools\nOfficial SDKs are available for Python, JavaScript/TypeScript, and Go. Postman and Insomnia collections can be downloaded from the developers portal.",
+    "contact": {
+      "name": "MarketMate API Support",
+      "url": "https://marketmate-website.onrender.com/developers",
+      "email": "api@marketmate.io"
+    },
+    "license": {
+      "name": "Proprietary",
+      "url": "https://marketmate-website.onrender.com/terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://marketmate-website.onrender.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/market-state": {
+      "get": {
+        "operationId": "getMarketState",
+        "summary": "Get current market state",
+        "description": "Returns the current market regime analysis for a given symbol, including trend direction, conviction level, volatility assessment, and key support/resistance levels. Data is updated every 15 minutes.",
+        "tags": ["Market Data"],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Trading pair symbol. Defaults to BTC-USD if not provided.",
+            "schema": {
+              "type": "string",
+              "default": "BTC-USD",
+              "enum": ["BTC-USD", "ETH-USD", "XAU-USD", "SOL-USD", "BNB-USD"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with market state data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketState"
+                },
+                "example": {
+                  "symbol": "BTC-USD",
+                  "regime": "trending_bullish",
+                  "conviction": 0.82,
+                  "volatility": "elevated",
+                  "liquidity": 0.76,
+                  "key_levels": {
+                    "support": [67850, 67200, 66500],
+                    "resistance": [69500, 70200, 71500]
+                  },
+                  "trend": {
+                    "direction": "bullish",
+                    "strength": 0.74,
+                    "timeframe": "4H"
+                  },
+                  "updated_at": "2025-01-15T14:30:00.000Z"
+                }
+              }
+            },
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of requests remaining in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Reset": {
+                "description": "Time when the rate limit resets (Unix timestamp)",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Unauthorized",
+                  "message": "API key required. Include Authorization: Bearer <your-api-key> header."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                },
+                "example": {
+                  "error": "RateLimitExceeded",
+                  "message": "You have exceeded your rate limit. Please retry after 60 seconds.",
+                  "retry_after": 60
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                },
+                "example": {
+                  "error": "InternalServerError",
+                  "message": "An unexpected error occurred. Please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/signals": {
+      "get": {
+        "operationId": "getSignals",
+        "summary": "Get trading signals",
+        "description": "Returns active trading signals filtered by optional parameters. Each signal includes entry zone, stop loss, take profit levels, risk/reward ratio, conviction level, Smart Money Concept zone type, and confirmation method. Signals are generated by the MarketMate strategy engine and are updated in real-time.",
+        "tags": ["Signals"],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Filter signals by trading pair symbol",
+            "schema": {
+              "type": "string",
+              "enum": ["BTC-USD", "ETH-USD", "XAU-USD", "SOL-USD", "BNB-USD"]
+            }
+          },
+          {
+            "name": "conviction",
+            "in": "query",
+            "required": false,
+            "description": "Filter signals by conviction level",
+            "schema": {
+              "type": "string",
+              "enum": ["HIGH", "MEDIUM", "LOW"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with trading signals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignalsResponse"
+                },
+                "example": {
+                  "signals": [
+                    {
+                      "signal_id": "sig_550e8400",
+                      "symbol": "BTC-USD",
+                      "direction": "LONG",
+                      "entry_zone": { "low": 67850, "high": 68200, "mid": 68025 },
+                      "stop_loss": 67100,
+                      "take_profit_1": 69500,
+                      "take_profit_2": 71000,
+                      "take_profit_3": 72800,
+                      "risk_reward": 3.2,
+                      "conviction": "HIGH",
+                      "zone_type": "demand_zone",
+                      "confirmation": "order_block",
+                      "status": "ACTIVE",
+                      "created_at": "2025-01-15T13:30:00.000Z"
+                    }
+                  ],
+                  "count": 1,
+                  "timestamp": "2025-01-15T14:30:00.000Z"
+                }
+              }
+            },
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of requests remaining in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Reset": {
+                "description": "Time when the rate limit resets (Unix timestamp)",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Unauthorized",
+                  "message": "API key required."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/liquidity": {
+      "get": {
+        "operationId": "getLiquidity",
+        "summary": "Get liquidity analysis",
+        "description": "Returns the current liquidity map for a given symbol, including liquidity pools (demand/supply levels with strength and volume) and recent liquidity sweeps. This data identifies where institutional orders are likely clustered and where stops have been triggered.",
+        "tags": ["Market Data"],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Trading pair symbol. Defaults to BTC-USD if not provided.",
+            "schema": {
+              "type": "string",
+              "default": "BTC-USD",
+              "enum": ["BTC-USD", "ETH-USD", "XAU-USD", "SOL-USD", "BNB-USD"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with liquidity analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiquidityAnalysis"
+                },
+                "example": {
+                  "symbol": "BTC-USD",
+                  "score": 0.76,
+                  "pools": [
+                    { "level": 67850, "type": "demand", "strength": 0.85, "volume": "24.5 BTC" },
+                    { "level": 69500, "type": "supply", "strength": 0.72, "volume": "18.2 BTC" }
+                  ],
+                  "sweeps": [
+                    { "level": 67100, "direction": "bearish", "swept_at": "2025-01-14T14:30:00.000Z", "volume": "45.2 BTC" }
+                  ],
+                  "updated_at": "2025-01-15T14:30:00.000Z"
+                }
+              }
+            },
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of requests remaining in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Reset": {
+                "description": "Time when the rate limit resets (Unix timestamp)",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Unauthorized",
+                  "message": "API key required."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/historical": {
+      "get": {
+        "operationId": "getHistoricalData",
+        "summary": "Get historical market data",
+        "description": "Returns historical market regime data for a given symbol over a specified time range. Useful for backtesting, charting, and trend analysis. Maximum lookback is 168 hours (7 days). Data points include regime classification, conviction, volatility, and liquidity score at each interval.",
+        "tags": ["Historical Data"],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Trading pair symbol. Defaults to BTC-USD if not provided.",
+            "schema": {
+              "type": "string",
+              "default": "BTC-USD",
+              "enum": ["BTC-USD", "ETH-USD", "XAU-USD", "SOL-USD", "BNB-USD"]
+            }
+          },
+          {
+            "name": "hours",
+            "in": "query",
+            "required": false,
+            "description": "Number of hours of historical data to retrieve (1-168). Defaults to 24.",
+            "schema": {
+              "type": "integer",
+              "default": 24,
+              "minimum": 1,
+              "maximum": 168
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "description": "Data interval granularity. Defaults to 1h.",
+            "schema": {
+              "type": "string",
+              "default": "1h",
+              "enum": ["5m", "15m", "30m", "1h", "4h", "1d"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with historical data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricalResponse"
+                },
+                "example": {
+                  "symbol": "BTC-USD",
+                  "interval": "1h",
+                  "data": [
+                    {
+                      "timestamp": "2025-01-15T13:00:00.000Z",
+                      "regime": "trending_bullish",
+                      "conviction": 0.78,
+                      "volatility": "elevated",
+                      "liquidity_score": 0.72
+                    }
+                  ],
+                  "count": 25,
+                  "timestamp": "2025-01-15T14:30:00.000Z"
+                }
+              }
+            },
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of requests remaining in the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Reset": {
+                "description": "Time when the rate limit resets (Unix timestamp)",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Unauthorized",
+                  "message": "API key required."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/verify": {
+      "get": {
+        "operationId": "verifyApiKey",
+        "summary": "Verify API key",
+        "description": "Validates the provided API key and returns its status and environment. Use this endpoint to test your API key before making data requests. No rate limit is applied to this endpoint.",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key is valid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyResponse"
+                },
+                "example": {
+                  "valid": true,
+                  "environment": "production"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyErrorResponse"
+                },
+                "examples": {
+                  "missing_key": {
+                    "summary": "No API key provided",
+                    "value": {
+                      "valid": false,
+                      "error": "No API key provided"
+                    }
+                  },
+                  "invalid_key": {
+                    "summary": "Invalid or revoked key",
+                    "value": {
+                      "valid": false,
+                      "error": "Invalid or revoked API key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "API key authentication. Pass your MarketMate API key as a Bearer token in the Authorization header."
+      }
+    },
+    "schemas": {
+      "MarketState": {
+        "type": "object",
+        "required": ["symbol", "regime", "conviction", "volatility", "liquidity", "key_levels", "trend", "updated_at"],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol",
+            "example": "BTC-USD"
+          },
+          "regime": {
+            "type": "string",
+            "description": "Current market regime classification",
+            "enum": ["trending_bullish", "trending_bearish", "ranging", "volatile", "transitional"],
+            "example": "trending_bullish"
+          },
+          "conviction": {
+            "type": "number",
+            "description": "Conviction score for the current regime (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.82
+          },
+          "volatility": {
+            "type": "string",
+            "description": "Current volatility assessment",
+            "enum": ["low", "normal", "elevated", "extreme"],
+            "example": "elevated"
+          },
+          "liquidity": {
+            "type": "number",
+            "description": "Overall liquidity score (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.76
+          },
+          "key_levels": {
+            "type": "object",
+            "description": "Key support and resistance price levels",
+            "required": ["support", "resistance"],
+            "properties": {
+              "support": {
+                "type": "array",
+                "description": "Support price levels (strongest first)",
+                "items": {
+                  "type": "number"
+                },
+                "example": [67850, 67200, 66500]
+              },
+              "resistance": {
+                "type": "array",
+                "description": "Resistance price levels (closest first)",
+                "items": {
+                  "type": "number"
+                },
+                "example": [69500, 70200, 71500]
+              }
+            }
+          },
+          "trend": {
+            "type": "object",
+            "description": "Current trend analysis",
+            "required": ["direction", "strength", "timeframe"],
+            "properties": {
+              "direction": {
+                "type": "string",
+                "description": "Trend direction",
+                "enum": ["bullish", "bearish", "neutral"],
+                "example": "bullish"
+              },
+              "strength": {
+                "type": "number",
+                "description": "Trend strength score (0.0 - 1.0)",
+                "minimum": 0,
+                "maximum": 1,
+                "example": 0.74
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Primary timeframe for the trend analysis",
+                "enum": ["1m", "5m", "15m", "30m", "1H", "4H", "1D", "1W"],
+                "example": "4H"
+              }
+            }
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of when this data was last updated",
+            "example": "2025-01-15T14:30:00.000Z"
+          }
+        }
+      },
+      "Signal": {
+        "type": "object",
+        "required": ["signal_id", "symbol", "direction", "entry_zone", "stop_loss", "take_profit_1", "risk_reward", "conviction", "zone_type", "confirmation", "status", "created_at"],
+        "properties": {
+          "signal_id": {
+            "type": "string",
+            "description": "Unique signal identifier",
+            "pattern": "^sig_[a-f0-9]{8}$",
+            "example": "sig_550e8400"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol",
+            "example": "BTC-USD"
+          },
+          "direction": {
+            "type": "string",
+            "description": "Trade direction",
+            "enum": ["LONG", "SHORT"],
+            "example": "LONG"
+          },
+          "entry_zone": {
+            "type": "object",
+            "description": "Entry zone for the trade",
+            "required": ["low", "high", "mid"],
+            "properties": {
+              "low": {
+                "type": "number",
+                "description": "Lower boundary of the entry zone",
+                "example": 67850
+              },
+              "high": {
+                "type": "number",
+                "description": "Upper boundary of the entry zone",
+                "example": 68200
+              },
+              "mid": {
+                "type": "number",
+                "description": "Midpoint of the entry zone",
+                "example": 68025
+              }
+            }
+          },
+          "stop_loss": {
+            "type": "number",
+            "description": "Stop loss price level",
+            "example": 67100
+          },
+          "take_profit_1": {
+            "type": "number",
+            "description": "First take profit level (conservative)",
+            "example": 69500
+          },
+          "take_profit_2": {
+            "type": ["number", "null"],
+            "description": "Second take profit level (moderate)",
+            "example": 71000
+          },
+          "take_profit_3": {
+            "type": ["number", "null"],
+            "description": "Third take profit level (aggressive)",
+            "example": 72800
+          },
+          "risk_reward": {
+            "type": "number",
+            "description": "Risk-to-reward ratio",
+            "minimum": 0,
+            "example": 3.2
+          },
+          "conviction": {
+            "type": "string",
+            "description": "Signal conviction level",
+            "enum": ["HIGH", "MEDIUM", "LOW"],
+            "example": "HIGH"
+          },
+          "zone_type": {
+            "type": "string",
+            "description": "Smart Money Concept zone type",
+            "enum": ["demand_zone", "supply_zone", "liquidity_pool", "breaker_block", "mitigation_block"],
+            "example": "demand_zone"
+          },
+          "confirmation": {
+            "type": "string",
+            "description": "Confirmation method used",
+            "enum": ["order_block", "fair_value_gap", "break_of_structure", "change_of_character", "liquidity_sweep"],
+            "example": "order_block"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current signal status",
+            "enum": ["ACTIVE", "TRIGGERED", "EXPIRED", "CANCELLED"],
+            "example": "ACTIVE"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of signal creation",
+            "example": "2025-01-15T13:30:00.000Z"
+          }
+        }
+      },
+      "SignalsResponse": {
+        "type": "object",
+        "required": ["signals", "count", "timestamp"],
+        "properties": {
+          "signals": {
+            "type": "array",
+            "description": "Array of trading signals",
+            "items": {
+              "$ref": "#/components/schemas/Signal"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of signals returned",
+            "example": 1
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of the response",
+            "example": "2025-01-15T14:30:00.000Z"
+          }
+        }
+      },
+      "LiquidityPool": {
+        "type": "object",
+        "required": ["level", "type", "strength", "volume"],
+        "properties": {
+          "level": {
+            "type": "number",
+            "description": "Price level of the liquidity pool",
+            "example": 67850
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of liquidity pool",
+            "enum": ["demand", "supply"],
+            "example": "demand"
+          },
+          "strength": {
+            "type": "number",
+            "description": "Pool strength score (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.85
+          },
+          "volume": {
+            "type": "string",
+            "description": "Estimated volume at this level",
+            "example": "24.5 BTC"
+          }
+        }
+      },
+      "LiquiditySweep": {
+        "type": "object",
+        "required": ["level", "direction", "swept_at", "volume"],
+        "properties": {
+          "level": {
+            "type": "number",
+            "description": "Price level that was swept",
+            "example": 67100
+          },
+          "direction": {
+            "type": "string",
+            "description": "Direction of the sweep",
+            "enum": ["bullish", "bearish"],
+            "example": "bearish"
+          },
+          "swept_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of when the sweep occurred",
+            "example": "2025-01-14T14:30:00.000Z"
+          },
+          "volume": {
+            "type": "string",
+            "description": "Volume involved in the sweep",
+            "example": "45.2 BTC"
+          }
+        }
+      },
+      "LiquidityAnalysis": {
+        "type": "object",
+        "required": ["symbol", "score", "pools", "sweeps", "updated_at"],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol",
+            "example": "BTC-USD"
+          },
+          "score": {
+            "type": "number",
+            "description": "Overall liquidity score (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.76
+          },
+          "pools": {
+            "type": "array",
+            "description": "Liquidity pools identified at key levels",
+            "items": {
+              "$ref": "#/components/schemas/LiquidityPool"
+            }
+          },
+          "sweeps": {
+            "type": "array",
+            "description": "Recent liquidity sweeps",
+            "items": {
+              "$ref": "#/components/schemas/LiquiditySweep"
+            }
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of when this data was last updated",
+            "example": "2025-01-15T14:30:00.000Z"
+          }
+        }
+      },
+      "HistoricalDataPoint": {
+        "type": "object",
+        "required": ["timestamp", "regime", "conviction", "volatility", "liquidity_score"],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of the data point",
+            "example": "2025-01-15T13:00:00.000Z"
+          },
+          "regime": {
+            "type": "string",
+            "description": "Market regime at this point",
+            "enum": ["trending_bullish", "trending_bearish", "ranging", "volatile"],
+            "example": "trending_bullish"
+          },
+          "conviction": {
+            "type": "number",
+            "description": "Conviction score (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.78
+          },
+          "volatility": {
+            "type": "string",
+            "description": "Volatility level",
+            "enum": ["low", "normal", "elevated", "extreme"],
+            "example": "elevated"
+          },
+          "liquidity_score": {
+            "type": "number",
+            "description": "Liquidity score (0.0 - 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "example": 0.72
+          }
+        }
+      },
+      "HistoricalResponse": {
+        "type": "object",
+        "required": ["symbol", "interval", "data", "count", "timestamp"],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol",
+            "example": "BTC-USD"
+          },
+          "interval": {
+            "type": "string",
+            "description": "Data interval used",
+            "enum": ["5m", "15m", "30m", "1h", "4h", "1d"],
+            "example": "1h"
+          },
+          "data": {
+            "type": "array",
+            "description": "Array of historical data points",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalDataPoint"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of data points returned",
+            "example": 25
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of the response",
+            "example": "2025-01-15T14:30:00.000Z"
+          }
+        }
+      },
+      "VerifyResponse": {
+        "type": "object",
+        "required": ["valid", "environment"],
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "description": "Whether the API key is valid",
+            "example": true
+          },
+          "environment": {
+            "type": "string",
+            "description": "The environment this API key is valid for",
+            "enum": ["production", "sandbox"],
+            "example": "production"
+          }
+        }
+      },
+      "VerifyErrorResponse": {
+        "type": "object",
+        "required": ["valid", "error"],
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "description": "Always false for error responses",
+            "example": false
+          },
+          "error": {
+            "type": "string",
+            "description": "Error description",
+            "example": "Invalid or revoked API key"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error", "message"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type identifier",
+            "example": "Unauthorized"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "API key required. Include Authorization: Bearer <your-api-key> header."
+          }
+        }
+      },
+      "RateLimitError": {
+        "type": "object",
+        "required": ["error", "message", "retry_after"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type identifier",
+            "example": "RateLimitExceeded"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "You have exceeded your rate limit. Please retry after 60 seconds."
+          },
+          "retry_after": {
+            "type": "integer",
+            "description": "Seconds until the rate limit resets",
+            "example": 60
+          }
+        }
+      },
+      "ServerError": {
+        "type": "object",
+        "required": ["error", "message"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type identifier",
+            "example": "InternalServerError"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "An unexpected error occurred. Please try again later."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+model_list:
+  # ── Phase 3: 6-Layer Intelligence Stack ────────────────────────────────
+  # NOVA: Fast interpretation layer (3b — fast, public-facing)
+  - model_name: mate-nova
+    litellm_params:
+      model: ollama/mate-nova
+      api_base: http://ollama:11434
+
+  # ATLAS: Deep market reasoning engine (7b — analytical)
+  - model_name: mate-atlas
+    litellm_params:
+      model: ollama/mate-atlas
+      api_base: http://ollama:11434
+
+  # VANTA: Truth validator + System Builder Agent (7b — judgment)
+  - model_name: mate-vanta
+    litellm_params:
+      model: ollama/mate-vanta
+      api_base: http://ollama:11434
+
+  # PRISM: Data integrity layer (7b — strict validation)
+  - model_name: mate-prism
+    litellm_params:
+      model: ollama/mate-prism
+      api_base: http://ollama:11434
+
+  # VINNI: Market data intelligence monitor (7b — observation)
+  - model_name: mate-vinni
+    litellm_params:
+      model: ollama/mate-vinni
+      api_base: http://ollama:11434
+
+  # OPS: System operations layer (7b — infrastructure)
+  - model_name: mate-ops
+    litellm_params:
+      model: ollama/mate-ops
+      api_base: http://ollama:11434
+
+  # ── Cloud Fallbacks ────────────────────────────────────────────────────
+  # Primary cloud fallback for user-facing queries
+  - model_name: mate-nova
+    litellm_params:
+      model: gemini/gemini-2.0-flash
+      api_key: os.environ/GEMINI_API_KEY
+
+  # Cloud fallback for deep analysis
+  - model_name: mate-atlas
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: os.environ/GROQ_API_KEY
+
+  # ── Deprecated (Phase 3) ───────────────────────────────────────────────
+  # MateMax → replaced by ATLAS
+  # MateMini → replaced by NOVA (3b) + VINNI (7b)
+  # MateOps → evolved into OPS
+
+router_settings:
+  routing_strategy: usage-based-routing-v2
+  allowed_fails: 3
+  cooldown_time: 60
+  num_retries: 2
+  timeout: 300
+
+general_settings:
+  drop_params: true
+  set_verbose: false

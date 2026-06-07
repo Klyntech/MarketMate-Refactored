@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketmate"
+version = "2.1.0"
+description = "Official Python SDK for the MarketMate API — real-time market intelligence infrastructure"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    { name = "MarketMate", email = "dev@marketmate.io" },
+]
+keywords = ["marketmate", "trading", "api", "market-intelligence", "signals", "liquidity", "crypto"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+async = ["httpx[http2]>=0.24.0"]
+dev = ["pytest", "pytest-asyncio", "respx"]
+
+[project.urls]
+Homepage = "https://marketmate.io"
+Documentation = "https://marketmate-website.onrender.com/developers"
+Repository = "https://github.com/Klynttech/MarketMate"
+"Bug Tracker" = "https://github.com/Klynttech/MarketMate/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["marketmate*"]

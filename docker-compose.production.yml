@@ -1,0 +1,156 @@
+# =============================================================================
+# MarketMate — Production Docker Compose
+# =============================================================================
+# Usage:
+#   docker compose -f docker-compose.production.yml up -d
+#
+# Production stack extends the staging Ollama setup with:
+#   - Redis for caching & session management
+#   - Prometheus for metrics collection
+#   - Grafana for dashboards & alerting
+#
+# IMPORTANT: Ensure .env is configured with production secrets before deploy.
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Ollama — local LLM inference engine
+  # ---------------------------------------------------------------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: marketmate-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # API — MarketMate FastAPI / Next.js backend
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: marketmate-api
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - LLM_PROVIDER_STACK=ollama,gemini,openrouter,groq
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      ollama:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "${PORT:-8000}:8000"
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Nginx — reverse proxy & security layer
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: marketmate-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/ollama.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Redis — caching, sessions & rate-limit backing store
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: marketmate-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Prometheus — metrics collection
+  # ---------------------------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: marketmate-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      - api
+      - ollama
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Grafana — dashboards & visualization
+  # ---------------------------------------------------------------------------
+  grafana:
+    image: grafana/grafana:latest
+    container_name: marketmate-grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    depends_on:
+      - prometheus
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Celery Worker — background task processing
+  # ---------------------------------------------------------------------------
+  celery-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: marketmate-celery
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - LLM_PROVIDER_STACK=ollama,gemini,openrouter,groq
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - MATE_OPS_ENABLED=true
+    command: celery -A marketmate.tasks worker --loglevel=info --concurrency=2
+    depends_on:
+      - redis
+      - ollama
+    restart: on-failure
+
+# =============================================================================
+# Named volumes
+# =============================================================================
+volumes:
+  ollama_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local

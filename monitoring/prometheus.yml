@@ -1,0 +1,42 @@
+# =============================================================================
+# MarketMate — Prometheus Scrape Configuration
+# =============================================================================
+# Targets:
+#   1. MarketMate API  — application-level metrics (request latency, errors, etc.)
+#   2. Ollama          — inference metrics (model load, request duration, etc.)
+#
+# Prometheus is scraped from within the Docker network, so internal service
+# names (api, ollama) are used instead of localhost.
+# =============================================================================
+
+global:
+  scrape_interval:     15s       # Default scrape interval for all jobs
+  evaluation_interval: 15s       # How often to evaluate rules
+
+scrape_configs:
+  # ---------------------------------------------------------------------------
+  # MarketMate API metrics
+  # ---------------------------------------------------------------------------
+  - job_name: "marketmate-api"
+    metrics_path: "/metrics"
+    scrape_interval: 10s
+    static_configs:
+      - targets: ["api:8000"]
+        labels:
+          service: "marketmate"
+          component: "api"
+          environment: "production"
+
+  # ---------------------------------------------------------------------------
+  # Ollama metrics (if available — requires Ollama >= 0.1.30 with
+  # OLLAMA_DEBUG=1 or the experimental metrics endpoint)
+  # ---------------------------------------------------------------------------
+  - job_name: "ollama"
+    metrics_path: "/metrics"
+    scrape_interval: 15s
+    static_configs:
+      - targets: ["ollama:11434"]
+        labels:
+          service: "marketmate"
+          component: "ollama"
+          environment: "production"

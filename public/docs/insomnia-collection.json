@@ -1,0 +1,357 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-01-15",
+  "__export_source": "marketmate-api",
+  "resources": [
+    {
+      "_id": "wrk_marketmate",
+      "_type": "workspace",
+      "name": "MarketMate API",
+      "description": "Official MarketMate API collection. Access real-time market intelligence, trading signals, liquidity analysis, and historical data for cryptocurrency and forex markets.",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_marketmate_base",
+      "_type": "environment",
+      "parentId": "wrk_marketmate",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "https://marketmate-website.onrender.com",
+        "api_key": "YOUR_API_KEY"
+      }
+    },
+    {
+      "_id": "env_marketmate_development",
+      "_type": "environment",
+      "parentId": "wrk_marketmate",
+      "name": "Development",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "api_key": "YOUR_API_KEY"
+      }
+    },
+    {
+      "_id": "fld_authentication",
+      "_type": "request_group",
+      "parentId": "wrk_marketmate",
+      "name": "Authentication",
+      "description": "API key verification and authentication endpoints"
+    },
+    {
+      "_id": "fld_market_data",
+      "_type": "request_group",
+      "parentId": "wrk_marketmate",
+      "name": "Market Data",
+      "description": "Real-time market state and liquidity analysis endpoints"
+    },
+    {
+      "_id": "fld_signals",
+      "_type": "request_group",
+      "parentId": "wrk_marketmate",
+      "name": "Signals",
+      "description": "Trading signal endpoints for real-time trade opportunities"
+    },
+    {
+      "_id": "fld_historical",
+      "_type": "request_group",
+      "parentId": "wrk_marketmate",
+      "name": "Historical Data",
+      "description": "Historical market data endpoints for backtesting and analysis"
+    },
+    {
+      "_id": "req_verify",
+      "_type": "request",
+      "parentId": "fld_authentication",
+      "name": "Verify API Key",
+      "description": "Validates the provided API key and returns its status and environment. Use this endpoint to test your API key before making data requests. No rate limit is applied to this endpoint.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/verify",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_market_state",
+      "_type": "request",
+      "parentId": "fld_market_data",
+      "name": "Get Market State",
+      "description": "Returns the current market regime analysis for a given symbol, including trend direction, conviction level, volatility assessment, and key support/resistance levels. Data is updated every 15 minutes.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/market-state?symbol=BTC-USD",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "BTC-USD",
+          "disabled": false,
+          "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_market_state_eth",
+      "_type": "request",
+      "parentId": "fld_market_data",
+      "name": "Get Market State (ETH-USD)",
+      "description": "Returns the current market regime analysis for ETH-USD.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/market-state?symbol=ETH-USD",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "ETH-USD",
+          "disabled": false
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_liquidity",
+      "_type": "request",
+      "parentId": "fld_market_data",
+      "name": "Get Liquidity Analysis",
+      "description": "Returns the current liquidity map for a given symbol, including liquidity pools (demand/supply levels with strength and volume) and recent liquidity sweeps. This data identifies where institutional orders are likely clustered and where stops have been triggered.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/liquidity?symbol=BTC-USD",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "BTC-USD",
+          "disabled": false,
+          "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_signals_all",
+      "_type": "request",
+      "parentId": "fld_signals",
+      "name": "Get All Signals",
+      "description": "Returns all active trading signals without any filters.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/signals",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_signals_filtered",
+      "_type": "request",
+      "parentId": "fld_signals",
+      "name": "Get Signals (Filtered)",
+      "description": "Returns active trading signals filtered by optional parameters. Each signal includes entry zone, stop loss, take profit levels, risk/reward ratio, conviction level, SMC zone type, and confirmation method.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/signals?symbol=BTC-USD&conviction=HIGH",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "BTC-USD",
+          "disabled": false,
+          "description": "Filter by trading pair symbol (optional)"
+        },
+        {
+          "name": "conviction",
+          "value": "HIGH",
+          "disabled": false,
+          "description": "Filter by conviction level: HIGH, MEDIUM, LOW (optional)"
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_historical",
+      "_type": "request",
+      "parentId": "fld_historical",
+      "name": "Get Historical Data",
+      "description": "Returns historical market regime data for a given symbol over a specified time range. Maximum lookback is 168 hours (7 days). Includes regime classification, conviction, volatility, and liquidity score at each interval.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/historical?symbol=BTC-USD&hours=24&interval=1h",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "BTC-USD",
+          "disabled": false,
+          "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+        },
+        {
+          "name": "hours",
+          "value": "24",
+          "disabled": false,
+          "description": "Number of hours of historical data (1-168, default: 24)"
+        },
+        {
+          "name": "interval",
+          "value": "1h",
+          "disabled": false,
+          "description": "Data interval: 5m, 15m, 30m, 1h, 4h, 1d (default: 1h)"
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    },
+    {
+      "_id": "req_historical_7d",
+      "_type": "request",
+      "parentId": "fld_historical",
+      "name": "Get Historical Data (7 Days)",
+      "description": "Returns 7 days of historical market regime data with 4-hour intervals.",
+      "method": "GET",
+      "url": "{{ base_url }}/api/v1/historical?symbol=BTC-USD&hours=168&interval=4h",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ api_key }}",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ api_key }}",
+        "disabled": false
+      },
+      "body": {},
+      "parameters": [
+        {
+          "name": "symbol",
+          "value": "BTC-USD",
+          "disabled": false
+        },
+        {
+          "name": "hours",
+          "value": "168",
+          "disabled": false,
+          "description": "7 days of data"
+        },
+        {
+          "name": "interval",
+          "value": "4h",
+          "disabled": false,
+          "description": "4-hour intervals"
+        }
+      ],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true
+    }
+  ]
+}

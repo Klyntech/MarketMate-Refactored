@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketmate"
+version = "6.2.0"
+description = "SMC Trading Signal Bot — Institutional-grade architecture with virtual accounting, dual-write replication, and compiled intelligence"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "MarketMate Team"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+dependencies = [
+    # Web framework
+    "fastapi>=0.111.0",
+    "uvicorn>=0.29.0",
+    "pydantic>=2.7.1",
+
+    # Database
+    "motor>=3.4.0",
+    "pymongo>=4.7.2",
+
+    # Telegram
+    "python-telegram-bot>=21.3",
+
+    # Data
+    "pandas>=2.0",
+    "numpy>=1.24",
+
+    # HTTP
+    "aiohttp>=3.9.5",
+    "httpx>=0.27",
+
+    # Social Media Publishing
+    "tweepy>=4.14",
+
+    # Logging
+    "structlog>=24.2.0",
+
+    # Config
+    "python-dotenv>=1.0",
+
+    # Redis (optional — MATE Intelligence Layer)
+    # "redis>=5.0",
+
+    # Google Drive Backup (optional)
+    # "google-api-python-client>=2.100",
+    # "google-auth>=2.25",
+
+    # WebSocket (optional — price monitor)
+    # "websockets>=12.0",
+
+    # ML (optional)
+    # "scikit-learn>=1.3",
+    # "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+redis = ["redis>=5.0"]
+gdrive = ["google-api-python-client>=2.100", "google-auth>=2.25"]
+websocket = ["websockets>=12.0"]
+ml = ["scikit-learn>=1.3", "matplotlib>=3.8"]
+all = [
+    "redis>=5.0",
+    "google-api-python-client>=2.100",
+    "google-auth>=2.25",
+    "websockets>=12.0",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.8",
+]
+
+[project.scripts]
+marketmate = "marketmate.main:app"
+marketmate-migrate = "marketmate.scripts.migrate:main"
+
+[tool.setuptools.packages.find]
+include = ["marketmate*"]
+
+[tool.setuptools.package-data]
+marketmate = ["py.typed"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["marketmate/tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501", "N805"]

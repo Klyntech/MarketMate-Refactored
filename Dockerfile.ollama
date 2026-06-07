@@ -1,0 +1,39 @@
+# =============================================================================
+# MarketMate — Custom Ollama Dockerfile
+# =============================================================================
+# Extends the official Ollama image to:
+#   1. Pre-pull the default model (qwen2.5:7b) at build time
+#   2. Use a startup script that serves Ollama, verifies health, and
+#      pre-loads the model into GPU/CPU memory for faster first inference
+#
+# Build:
+#   docker build -f Dockerfile.ollama -t marketmate-ollama .
+#
+# Run:
+#   docker run -d --gpus all -p 11434:11434 marketmate-ollama
+# =============================================================================
+
+FROM ollama/ollama:latest
+
+# Copy the startup script into the image
+COPY scripts/ollama-startup.sh /usr/local/bin/ollama-startup.sh
+
+# Make the startup script executable
+RUN chmod +x /usr/local/bin/ollama-startup.sh
+
+# Pre-pull the default model during build so it's baked into the image.
+# This avoids the delay of pulling on first run.
+# NOTE: This requires starting ollama temporarily during build.
+RUN ollama serve & sleep 5 && \
+    ollama pull qwen2.5:7b && \
+    kill %1 || true
+
+# Expose the Ollama API port
+EXPOSE 11434
+
+# Health check — verify the API is responsive
+HEALTHCHECK --interval=30s --timeout=10s --retries=5 --start-period=30s \
+    CMD curl -f http://localhost:11434/api/tags || exit 1
+
+# Use our custom startup script as the entrypoint
+CMD ["/usr/local/bin/ollama-startup.sh"]

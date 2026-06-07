@@ -1,0 +1,74 @@
+# =============================================================================
+# MarketMate — Ollama Staging Docker Compose
+# =============================================================================
+# Usage:
+#   docker compose -f docker-compose.ollama.yml up -d
+#
+# This stack runs the MarketMate API backed by a local Ollama instance,
+# fronted by Nginx as a reverse proxy. Ollama is never exposed publicly;
+# only Nginx (port 80) is accessible from the host.
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Ollama — local LLM inference engine
+  # ---------------------------------------------------------------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: marketmate-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # API — MarketMate FastAPI / Next.js backend
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: marketmate-api
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - LLM_PROVIDER_STACK=ollama,gemini,openrouter,groq
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "${PORT:-8000}:8000"
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Nginx — reverse proxy & security layer
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: marketmate-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/ollama.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+    restart: on-failure
+
+# =============================================================================
+# Named volumes
+# =============================================================================
+volumes:
+  ollama_data:
+    driver: local

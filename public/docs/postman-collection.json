@@ -1,0 +1,454 @@
+{
+  "info": {
+    "name": "MarketMate API",
+    "_postman_id": "marketmate-api-collection",
+    "description": "Official MarketMate API collection. Access real-time market intelligence, trading signals, liquidity analysis, and historical data for cryptocurrency and forex markets.\n\n## Getting Started\n1. Replace `YOUR_API_KEY` in the collection variables with your actual API key\n2. Use the Verify endpoint to test your key\n3. Explore market data, signals, and liquidity endpoints\n\n## Authentication\nAll endpoints require a Bearer token (your API key) in the Authorization header.\n\n## Rate Limits\n- Free: 60 req/min\n- Pro: 300 req/min\n- Enterprise: 1000 req/min\n\n## Support\n- Docs: https://marketmate-website.onrender.com/developers\n- Email: api@marketmate.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api_key}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "API key verification and authentication endpoints",
+      "item": [
+        {
+          "name": "Verify API Key",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "verify"]
+            },
+            "description": "Validates the provided API key and returns its status and environment. Use this endpoint to test your API key before making data requests. No rate limit is applied to this endpoint."
+          },
+          "response": [
+            {
+              "name": "Valid Key",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/verify",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "verify"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"valid\": true,\n  \"environment\": \"production\"\n}"
+            },
+            {
+              "name": "Invalid Key",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/verify",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "verify"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"error\": \"Invalid or revoked API key\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Market Data",
+      "description": "Real-time market state and liquidity analysis endpoints",
+      "item": [
+        {
+          "name": "Get Market State",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/market-state?symbol=BTC-USD",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "market-state"],
+              "query": [
+                {
+                  "key": "symbol",
+                  "value": "BTC-USD",
+                  "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+                }
+              ]
+            },
+            "description": "Returns the current market regime analysis for a given symbol, including trend direction, conviction level, volatility assessment, and key support/resistance levels. Data is updated every 15 minutes."
+          },
+          "response": [
+            {
+              "name": "BTC-USD Market State",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/market-state?symbol=BTC-USD",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "market-state"],
+                  "query": [
+                    { "key": "symbol", "value": "BTC-USD" }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" },
+                { "key": "X-RateLimit-Limit", "value": "60" },
+                { "key": "X-RateLimit-Remaining", "value": "59" }
+              ],
+              "body": "{\n  \"symbol\": \"BTC-USD\",\n  \"regime\": \"trending_bullish\",\n  \"conviction\": 0.82,\n  \"volatility\": \"elevated\",\n  \"liquidity\": 0.76,\n  \"key_levels\": {\n    \"support\": [67850, 67200, 66500],\n    \"resistance\": [69500, 70200, 71500]\n  },\n  \"trend\": {\n    \"direction\": \"bullish\",\n    \"strength\": 0.74,\n    \"timeframe\": \"4H\"\n  },\n  \"updated_at\": \"2025-01-15T14:30:00.000Z\"\n}"
+            },
+            {
+              "name": "ETH-USD Market State",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/market-state?symbol=ETH-USD",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "market-state"],
+                  "query": [
+                    { "key": "symbol", "value": "ETH-USD" }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"symbol\": \"ETH-USD\",\n  \"regime\": \"ranging\",\n  \"conviction\": 0.54,\n  \"volatility\": \"normal\",\n  \"liquidity\": 0.68,\n  \"key_levels\": {\n    \"support\": [3620, 3580, 3520],\n    \"resistance\": [3780, 3850, 3920]\n  },\n  \"trend\": {\n    \"direction\": \"neutral\",\n    \"strength\": 0.42,\n    \"timeframe\": \"4H\"\n  },\n  \"updated_at\": \"2025-01-15T14:30:00.000Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Liquidity Analysis",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/liquidity?symbol=BTC-USD",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "liquidity"],
+              "query": [
+                {
+                  "key": "symbol",
+                  "value": "BTC-USD",
+                  "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+                }
+              ]
+            },
+            "description": "Returns the current liquidity map for a given symbol, including liquidity pools (demand/supply levels with strength and volume) and recent liquidity sweeps."
+          },
+          "response": [
+            {
+              "name": "BTC-USD Liquidity",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/liquidity?symbol=BTC-USD",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "liquidity"],
+                  "query": [
+                    { "key": "symbol", "value": "BTC-USD" }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" },
+                { "key": "X-RateLimit-Limit", "value": "60" },
+                { "key": "X-RateLimit-Remaining", "value": "58" }
+              ],
+              "body": "{\n  \"symbol\": \"BTC-USD\",\n  \"score\": 0.76,\n  \"pools\": [\n    { \"level\": 67850, \"type\": \"demand\", \"strength\": 0.85, \"volume\": \"24.5 BTC\" },\n    { \"level\": 69500, \"type\": \"supply\", \"strength\": 0.72, \"volume\": \"18.2 BTC\" },\n    { \"level\": 67200, \"type\": \"demand\", \"strength\": 0.68, \"volume\": \"31.1 BTC\" },\n    { \"level\": 71000, \"type\": \"supply\", \"strength\": 0.61, \"volume\": \"12.8 BTC\" }\n  ],\n  \"sweeps\": [\n    { \"level\": 67100, \"direction\": \"bearish\", \"swept_at\": \"2025-01-14T14:30:00.000Z\", \"volume\": \"45.2 BTC\" }\n  ],\n  \"updated_at\": \"2025-01-15T14:30:00.000Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Signals",
+      "description": "Trading signal endpoints for real-time trade opportunities",
+      "item": [
+        {
+          "name": "Get Trading Signals",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/signals?symbol=BTC-USD&conviction=HIGH",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "signals"],
+              "query": [
+                {
+                  "key": "symbol",
+                  "value": "BTC-USD",
+                  "description": "Filter by trading pair symbol (optional)"
+                },
+                {
+                  "key": "conviction",
+                  "value": "HIGH",
+                  "description": "Filter by conviction level: HIGH, MEDIUM, LOW (optional)"
+                }
+              ]
+            },
+            "description": "Returns active trading signals filtered by optional parameters. Each signal includes entry zone, stop loss, take profit levels, risk/reward ratio, conviction level, SMC zone type, and confirmation method."
+          },
+          "response": [
+            {
+              "name": "High Conviction Signals",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/signals?conviction=HIGH",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "signals"],
+                  "query": [
+                    { "key": "conviction", "value": "HIGH" }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" },
+                { "key": "X-RateLimit-Limit", "value": "60" },
+                { "key": "X-RateLimit-Remaining", "value": "57" }
+              ],
+              "body": "{\n  \"signals\": [\n    {\n      \"signal_id\": \"sig_550e8400\",\n      \"symbol\": \"BTC-USD\",\n      \"direction\": \"LONG\",\n      \"entry_zone\": { \"low\": 67850, \"high\": 68200, \"mid\": 68025 },\n      \"stop_loss\": 67100,\n      \"take_profit_1\": 69500,\n      \"take_profit_2\": 71000,\n      \"take_profit_3\": 72800,\n      \"risk_reward\": 3.2,\n      \"conviction\": \"HIGH\",\n      \"zone_type\": \"demand_zone\",\n      \"confirmation\": \"order_block\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2025-01-15T13:30:00.000Z\"\n    },\n    {\n      \"signal_id\": \"sig_7c9d0e20\",\n      \"symbol\": \"XAU-USD\",\n      \"direction\": \"LONG\",\n      \"entry_zone\": { \"low\": 2340, \"high\": 2348, \"mid\": 2344 },\n      \"stop_loss\": 2325,\n      \"take_profit_1\": 2375,\n      \"take_profit_2\": 2410,\n      \"take_profit_3\": 2450,\n      \"risk_reward\": 4.1,\n      \"conviction\": \"HIGH\",\n      \"zone_type\": \"liquidity_pool\",\n      \"confirmation\": \"break_of_structure\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2025-01-15T14:00:00.000Z\"\n    }\n  ],\n  \"count\": 2,\n  \"timestamp\": \"2025-01-15T14:30:00.000Z\"\n}"
+            },
+            {
+              "name": "All Signals",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/signals",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "signals"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"signals\": [\n    {\n      \"signal_id\": \"sig_550e8400\",\n      \"symbol\": \"BTC-USD\",\n      \"direction\": \"LONG\",\n      \"entry_zone\": { \"low\": 67850, \"high\": 68200, \"mid\": 68025 },\n      \"stop_loss\": 67100,\n      \"take_profit_1\": 69500,\n      \"take_profit_2\": 71000,\n      \"take_profit_3\": 72800,\n      \"risk_reward\": 3.2,\n      \"conviction\": \"HIGH\",\n      \"zone_type\": \"demand_zone\",\n      \"confirmation\": \"order_block\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2025-01-15T13:30:00.000Z\"\n    },\n    {\n      \"signal_id\": \"sig_6ba7b810\",\n      \"symbol\": \"ETH-USD\",\n      \"direction\": \"SHORT\",\n      \"entry_zone\": { \"low\": 3750, \"high\": 3780, \"mid\": 3765 },\n      \"stop_loss\": 3820,\n      \"take_profit_1\": 3680,\n      \"take_profit_2\": 3590,\n      \"take_profit_3\": null,\n      \"risk_reward\": 2.4,\n      \"conviction\": \"MEDIUM\",\n      \"zone_type\": \"supply_zone\",\n      \"confirmation\": \"fair_value_gap\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2025-01-15T12:30:00.000Z\"\n    },\n    {\n      \"signal_id\": \"sig_7c9d0e20\",\n      \"symbol\": \"XAU-USD\",\n      \"direction\": \"LONG\",\n      \"entry_zone\": { \"low\": 2340, \"high\": 2348, \"mid\": 2344 },\n      \"stop_loss\": 2325,\n      \"take_profit_1\": 2375,\n      \"take_profit_2\": 2410,\n      \"take_profit_3\": 2450,\n      \"risk_reward\": 4.1,\n      \"conviction\": \"HIGH\",\n      \"zone_type\": \"liquidity_pool\",\n      \"confirmation\": \"break_of_structure\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2025-01-15T14:00:00.000Z\"\n    }\n  ],\n  \"count\": 3,\n  \"timestamp\": \"2025-01-15T14:30:00.000Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Historical Data",
+      "description": "Historical market data endpoints for backtesting and analysis",
+      "item": [
+        {
+          "name": "Get Historical Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/historical?symbol=BTC-USD&hours=24&interval=1h",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "historical"],
+              "query": [
+                {
+                  "key": "symbol",
+                  "value": "BTC-USD",
+                  "description": "Trading pair symbol (BTC-USD, ETH-USD, XAU-USD, SOL-USD, BNB-USD)"
+                },
+                {
+                  "key": "hours",
+                  "value": "24",
+                  "description": "Number of hours of historical data (1-168, default: 24)"
+                },
+                {
+                  "key": "interval",
+                  "value": "1h",
+                  "description": "Data interval: 5m, 15m, 30m, 1h, 4h, 1d (default: 1h)"
+                }
+              ]
+            },
+            "description": "Returns historical market regime data for a given symbol over a specified time range. Maximum lookback is 168 hours (7 days). Includes regime classification, conviction, volatility, and liquidity score at each interval."
+          },
+          "response": [
+            {
+              "name": "24h Historical Data",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{base_url}}/api/v1/historical?symbol=BTC-USD&hours=24&interval=1h",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "historical"],
+                  "query": [
+                    { "key": "symbol", "value": "BTC-USD" },
+                    { "key": "hours", "value": "24" },
+                    { "key": "interval", "value": "1h" }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" },
+                { "key": "X-RateLimit-Limit", "value": "60" },
+                { "key": "X-RateLimit-Remaining", "value": "56" }
+              ],
+              "body": "{\n  \"symbol\": \"BTC-USD\",\n  \"interval\": \"1h\",\n  \"data\": [\n    {\n      \"timestamp\": \"2025-01-15T14:00:00.000Z\",\n      \"regime\": \"trending_bullish\",\n      \"conviction\": 0.82,\n      \"volatility\": \"elevated\",\n      \"liquidity_score\": 0.76\n    },\n    {\n      \"timestamp\": \"2025-01-15T13:00:00.000Z\",\n      \"regime\": \"trending_bullish\",\n      \"conviction\": 0.78,\n      \"volatility\": \"elevated\",\n      \"liquidity_score\": 0.72\n    },\n    {\n      \"timestamp\": \"2025-01-15T12:00:00.000Z\",\n      \"regime\": \"ranging\",\n      \"conviction\": 0.45,\n      \"volatility\": \"normal\",\n      \"liquidity_score\": 0.65\n    }\n  ],\n  \"count\": 25,\n  \"timestamp\": \"2025-01-15T14:30:00.000Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Error Examples",
+      "description": "Example error responses from the MarketMate API",
+      "item": [
+        {
+          "name": "401 Unauthorized",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/market-state",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "market-state"]
+            },
+            "description": "Example request without Authorization header"
+          },
+          "response": [
+            {
+              "name": "Missing API Key",
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"API key required. Include Authorization: Bearer <your-api-key> header.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "429 Rate Limit Exceeded",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/market-state",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "market-state"]
+            },
+            "description": "Example response when rate limit is exceeded"
+          },
+          "response": [
+            {
+              "name": "Rate Limited",
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"error\": \"RateLimitExceeded\",\n  \"message\": \"You have exceeded your rate limit. Please retry after 60 seconds.\",\n  \"retry_after\": 60\n}"
+            }
+          ]
+        },
+        {
+          "name": "500 Server Error",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/market-state",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "market-state"]
+            },
+            "description": "Example internal server error response"
+          },
+          "response": [
+            {
+              "name": "Server Error",
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"error\": \"InternalServerError\",\n  \"message\": \"An unexpected error occurred. Please try again later.\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://marketmate-website.onrender.com",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "YOUR_API_KEY",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@marketmate/sdk",
+  "version": "2.1.0",
+  "description": "Official TypeScript/JavaScript SDK for the MarketMate API — real-time market intelligence infrastructure",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "marketmate",
+    "trading",
+    "api",
+    "market-intelligence",
+    "signals",
+    "liquidity",
+    "crypto",
+    "typescript"
+  ],
+  "author": "MarketMate",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Klynttech/MarketMate.git",
+    "directory": "sdks/typescript"
+  },
+  "homepage": "https://marketmate-website.onrender.com/developers",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

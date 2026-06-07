@@ -1,0 +1,41 @@
+services:
+  # MarketMate Python Bot — FastAPI + uvicorn
+  - type: web
+    name: marketmate
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn marketmate.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: ENV
+        value: production
+
+  # MarketMate Website — Next.js
+  - type: web
+    name: marketmate-website
+    runtime: node
+    plan: free
+    branch: main
+    rootDir: .
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: bash -c 'mkdir -p ./data && npx prisma db push --skip-generate 2>/dev/null; npm run start -- -H 0.0.0.0 -p $PORT'
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "20.11.0"
+      - key: MARKETMATE_API_URL
+        value: "https://newmarketmate.onrender.com"
+      - key: NEXTAUTH_URL
+        value: "https://marketmate-website.onrender.com"
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: GITHUB_ID
+        value: "Ov23livV5H8KLYi3jGJi"
+      - key: GITHUB_SECRET
+        sync: false
+      - key: DATABASE_URL
+        value: "file:./data/marketmate.db"
